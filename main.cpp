@@ -14,6 +14,8 @@ using std::left;
 using std::right;
 using std::fixed;
 using std::setprecision;
+using std::numeric_limits;
+using std::streamsize;
 
 struct Studentas{
     string var;
@@ -33,7 +35,7 @@ int main()
     while(!(cin>>m)||m<0){
         cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek studentu grupeje? ";
         cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     for(auto z=0; z<m; z++)
         Grupe.push_back(Stud_iv());
@@ -58,27 +60,27 @@ Studentas Stud_iv(){
     while(!(cin>>n)||n<0){
         cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek pazymiu turi "<<Pirmas.var<<" "<<Pirmas.pav<<": ";;
         cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
-    for (int a=0; a<n; a++){
+    for(int a=0; a<n; a++){
         cout<<"Pazymys nr. "<<a+1<<": ";
         while(!(cin>>laik_paz)||laik_paz<1||laik_paz>10){
             cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10). Pazymys nr. "<<a+1<<": ";
             cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         };
         Pirmas.paz.push_back(laik_paz);
-        sum+=laik_paz; //sum+=Pirmas.paz[a]
+        sum+=laik_paz;
     }
-    cout<<"Iveskite egzamino pazymi: ";
+    cout<<"Iveskite "<<Pirmas.var<<" "<<Pirmas.pav<<" egzamino pazymi: ";
     while(!(cin>>Pirmas.egz)||Pirmas.egz<1||Pirmas.egz>10){
         cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10). Iveskite egzamino pazymi: ";
         cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     if(n!=0)
         Pirmas.gal=double(sum)/double(n)*0.4+Pirmas.egz*0.6;
     else
-        Pirmas.gal=0*0.4+Pirmas.egz*0.6;
+        Pirmas.gal=Pirmas.egz*0.6;
     return Pirmas;
 }

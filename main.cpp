@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <algorithm>
 #include <limits>
 
 using std::cout;
@@ -23,9 +24,11 @@ struct Studentas{
     vector <int> paz;
     int egz;
     double gal;
+    double med;
     };
 
 Studentas Stud_iv();
+float Rask_mediana(vector <int> paz);
 
 int main()
 {
@@ -33,25 +36,57 @@ int main()
     cout<<"Kiek studentu grupeje? ";
     int m;
     while(!(cin>>m)||m<0){
-        cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek studentu grupeje? ";
+        cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0. Kiek studentu grupeje? ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     for(auto z=0; z<m; z++)
         Grupe.push_back(Stud_iv());
-    cout<<setw(12)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Vid.)"<<endl;
-    for(int i=0; i<50; i++){
-        cout<<"-";
+    string spr;
+    do{
+        cout<<"Ar isvesti galutini vidurki/mediana/abu? ";
+        cin>>spr;
     }
+    while(spr!="vidurki"&&spr!="mediana"&&spr!="abu");
+    if(spr=="vidurki"){
+        cout<<setw(12)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Vid.)"<<endl;
+        for(int i=0; i<50; i++){
+            cout<<"-";}}
+    else if(spr=="mediana"){
+        cout<<setw(12)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Med.)"<<endl;
+        for(int i=0; i<50; i++){
+            cout<<"-";}}
+    else if(spr=="abu"){
+        cout<<setw(12)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(18)<<left<<"Galutinis (Med.)"<<endl;
+        for(int i=0; i<68; i++){
+            cout<<"-";}}
+
     cout<<endl;
-    for(auto Past:Grupe){
-        cout<<setw(12)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.gal<<endl;
-    }
+    if(spr=="vidurki"){
+        for(auto Past:Grupe)
+            cout<<setw(12)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.gal<<endl;}
+    else if(spr=="mediana"){
+        for(auto Past:Grupe)
+            cout<<setw(12)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.med<<endl;}
+    else if(spr=="abu"){
+        for(auto Past:Grupe)
+            cout<<setw(12)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.gal<<setw(18)<<left<<fixed<<setprecision(2)<<Past.med<<endl;}
     return 0;
+}
+
+float Rask_mediana(vector <int> paz){
+    float mediana;
+    sort(paz.begin(), paz.end());
+    if(paz.size()%2==0)
+        mediana=(float(paz[(paz.size()/2)-1])+float(paz[paz.size()/2]))/2;
+    else
+        mediana=float(paz[(paz.size()/2)]);
+    return mediana;
 }
 
 Studentas Stud_iv(){
     int n, laik_paz, sum=0;
+    float mediana;
     Studentas Pirmas;
     cout<<"Iveskite studento duomenis: "<<endl;
     cout<<"Vardas: "; cin>>Pirmas.var;
@@ -78,9 +113,14 @@ Studentas Stud_iv(){
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
-    if(n!=0)
-        Pirmas.gal=double(sum)/double(n)*0.4+Pirmas.egz*0.6;
-    else
+    if(Pirmas.paz.size()==0){
         Pirmas.gal=Pirmas.egz*0.6;
+        Pirmas.med=Pirmas.egz*0.6;
+    }
+    else{
+        Pirmas.gal=double(sum)/double(n)*0.4+Pirmas.egz*0.6;
+        mediana=Rask_mediana(Pirmas.paz);
+        Pirmas.med=mediana*0.4+Pirmas.egz*0.6;
+    }
     return Pirmas;
 }

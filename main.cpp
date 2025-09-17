@@ -36,19 +36,6 @@ bool isNumber(string s);
 int main()
 {
     vector <Studentas> Grupe;
-    string pasirinkimas_pr;
-    int pasirinkimas;
-    cout<<"Pasirinkite, ar pazymius ivesite rankomis (rasyti 1), ar norite, kad jie butu generuoti atsitiktinai (rasyti 2): ";
-    while(true){
-        cin>>pasirinkimas_pr;
-        if(isNumber(pasirinkimas_pr)&&(stoi(pasirinkimas_pr)==1||stoi(pasirinkimas_pr)==2)){
-            pasirinkimas=stoi(pasirinkimas_pr);
-            break;
-        }
-        else{
-            cout<<"Ivedete neteisinga duomeni (galima vesti tik 1 arba 2): ";
-        }
-    }
     cout<<"Kiek studentu grupeje? ";
     string m_pr;
     int m;
@@ -62,7 +49,20 @@ int main()
             cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek studentu grupeje? ";
         }
     }
+    string pasirinkimas_pr;
+    int pasirinkimas;
     for(auto z=0; z<m; z++){
+        cout<<"Pasirinkite, ar pazymius studentui nr. "<<z+1<<" ivesite rankomis (rasyti 1), ar norite, kad jie butu generuoti atsitiktinai (rasyti 2): ";
+        while(true){
+            cin>>pasirinkimas_pr;
+            if(isNumber(pasirinkimas_pr)&&(stoi(pasirinkimas_pr)==1||stoi(pasirinkimas_pr)==2)){
+                pasirinkimas=stoi(pasirinkimas_pr);
+                break;
+            }
+            else{
+                cout<<"Ivedete neteisinga duomeni (galima vesti tik 1 arba 2): ";
+            }
+        }
         if(pasirinkimas==1){
             Grupe.push_back(Stud_iv(z+1));
         }

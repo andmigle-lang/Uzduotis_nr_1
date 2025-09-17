@@ -3,6 +3,8 @@
 #include <vector>
 #include <iomanip>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
 #include <cctype> //funckijai isdigit(), nes kai kuriems kompiliatoriams neveikia
 
 using std::cout;
@@ -26,13 +28,27 @@ struct Studentas{
     double med;
     };
 
-Studentas Stud_iv();
+Studentas Stud_iv(int k);
+Studentas Stud_iv_atsitiktinai(int k);
 float Rask_mediana(vector <int> paz);
 bool isNumber(string s);
 
 int main()
 {
     vector <Studentas> Grupe;
+    string pasirinkimas_pr;
+    int pasirinkimas;
+    cout<<"Pasirinkite, ar pazymius ivesite rankomis (rasyti 1), ar norite, kad jie butu generuoti atsitiktinai (rasyti 2): ";
+    while(true){
+        cin>>pasirinkimas_pr;
+        if(isNumber(pasirinkimas_pr)&&(stoi(pasirinkimas_pr)==1||stoi(pasirinkimas_pr)==2)){
+            pasirinkimas=stoi(pasirinkimas_pr);
+            break;
+        }
+        else{
+            cout<<"Ivedete neteisinga duomeni (galima vesti tik 1 arba 2): ";
+        }
+    }
     cout<<"Kiek studentu grupeje? ";
     string m_pr;
     int m;
@@ -46,8 +62,14 @@ int main()
             cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek studentu grupeje? ";
         }
     }
-    for(auto z=0; z<m; z++)
-        Grupe.push_back(Stud_iv());
+    for(auto z=0; z<m; z++){
+        if(pasirinkimas==1){
+            Grupe.push_back(Stud_iv(z+1));
+        }
+        else{
+            Grupe.push_back(Stud_iv_atsitiktinai(z+1));
+        }
+    }
     string spr;
     string spr_pr;
     cout<<"Ar isvesti galutini vidurki/mediana/abu? ";
@@ -58,7 +80,7 @@ int main()
             break;
         }
         else{
-            cout<<"Ivedete neteisinga duomeni. Iveskite tik zodi vidurki/mediana/abu: ";
+            cout<<"Ivedete neteisinga duomeni. Iveskite tik viena is siu zodziu: vidurki/mediana/abu: ";
         }
     }
     if(spr=="vidurki"){
@@ -97,12 +119,12 @@ float Rask_mediana(vector <int> paz){
     return mediana;
 }
 
-Studentas Stud_iv(){
+Studentas Stud_iv(int k){
     int laik_paz, sum=0;
     float mediana;
     Studentas Pirmas;
     string laik_paz_pr;
-    cout<<"Iveskite studento duomenis: "<<endl;
+    cout<<"Iveskite studento nr. "<<k<<" duomenis: "<<endl;
     cout<<"Vardas: "; cin>>Pirmas.var;
     cout<<"Pavarde: "; cin>>Pirmas.pav;
     cout<<"Veskite studento pazymius (1-10). 0 ivedimas zymi pazymiu pabaiga: "<<endl;
@@ -123,7 +145,7 @@ Studentas Stud_iv(){
             cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10 arba 0 uzbaigti). Veskite studento pazymius (1-10). 0 ivedimas zymi pazymiu pabaiga: "<<endl;
         }
     }
-    cout<<"Iveskite "<<Pirmas.var<<" "<<Pirmas.pav<<" egzamino pazymi: ";
+    cout<<"Iveskite egzamino pazymi: ";
     string egz_pr;
     while(true){
         cin>>egz_pr;
@@ -141,6 +163,39 @@ Studentas Stud_iv(){
     }
     else{
         Pirmas.gal=double(sum)/double(Pirmas.paz.size())*0.4+Pirmas.egz*0.6;
+        mediana=Rask_mediana(Pirmas.paz);
+        Pirmas.med=mediana*0.4+Pirmas.egz*0.6;
+    }
+    return Pirmas;
+}
+
+Studentas Stud_iv_atsitiktinai(int k){
+    int laik_paz, sum=0;
+    float mediana;
+    Studentas Pirmas;
+    cout<<"Iveskite studento nr. "<<k<<" duomenis: "<<endl;
+    cout<<"Vardas: "; cin>>Pirmas.var;
+    cout<<"Pavarde: "; cin>>Pirmas.pav;
+    srand(time(0));
+    int pazymiu_sk=rand()%21;
+    cout<<"Atsitiktinai generuojamu pazymiu skaicius (gali buti nuo 0 iki 20 pazymiu): "<<pazymiu_sk<<endl;
+    cout<<"Isvedami atsitiktinai generuojami pazymiai: "<<endl;
+
+    for(int i=0; i<pazymiu_sk; i++){
+        laik_paz=(rand()%10)+1;
+        cout<<"Generuotas pazymys nr. "<<i+1<<": "<<laik_paz<<endl;
+        Pirmas.paz.push_back(laik_paz);
+        sum+=laik_paz;
+    }
+    int egzamino_paz=(rand()%10)+1;
+    cout<<"Isvedamas sugeneruotas egzamino pazymys: "<<egzamino_paz<<endl;
+    Pirmas.egz=egzamino_paz;
+    if(Pirmas.paz.size()==0){
+        Pirmas.gal=Pirmas.egz*0.6;
+        Pirmas.med=Pirmas.egz*0.6;
+    }
+    else{
+        Pirmas.gal=double(sum)/double(pazymiu_sk)*0.4+Pirmas.egz*0.6;
         mediana=Rask_mediana(Pirmas.paz);
         Pirmas.med=mediana*0.4+Pirmas.egz*0.6;
     }

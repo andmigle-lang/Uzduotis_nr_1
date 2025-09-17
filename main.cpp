@@ -2,8 +2,6 @@
 #include <string>
 #include <vector>
 #include <iomanip>
-#include <algorithm>
-#include <limits>
 
 using std::cout;
 using std::cin;
@@ -15,8 +13,7 @@ using std::left;
 using std::right;
 using std::fixed;
 using std::setprecision;
-using std::numeric_limits;
-using std::streamsize;
+using std::stoi;
 
 struct Studentas{
     string var;
@@ -24,104 +21,98 @@ struct Studentas{
     vector <int> paz;
     int egz;
     double gal;
-    double med;
     };
 
 Studentas Stud_iv();
-float Rask_mediana(vector <int> paz);
+bool isNumber(string s);
 
 int main()
 {
     vector <Studentas> Grupe;
     cout<<"Kiek studentu grupeje? ";
+    string m_pr;
     int m;
-    while(!(cin>>m)||m<0){
-        cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek studentu grupeje? ";
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    while(true){
+        cin>>m_pr;
+        if(isNumber(m_pr)&&stoi(m_pr)>=0){
+            m=stoi(m_pr);
+            break;
+        }
+        else{
+            cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek studentu grupeje? ";
+        }
     }
     for(auto z=0; z<m; z++)
         Grupe.push_back(Stud_iv());
-    string spr;
-    do{
-        cout<<"Ar isvesti galutini vidurki/mediana/abu? ";
-        cin>>spr;
+    cout<<setw(12)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Vid.)"<<endl;
+    for(int i=0; i<50; i++){
+        cout<<"-";
     }
-    while(spr!="vidurki"&&spr!="mediana"&&spr!="abu");
-    if(spr=="vidurki"){
-        cout<<setw(12)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Vid.)"<<endl;
-        for(int i=0; i<50; i++){
-            cout<<"-";}}
-    else if(spr=="mediana"){
-        cout<<setw(12)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Med.)"<<endl;
-        for(int i=0; i<50; i++){
-            cout<<"-";}}
-    else if(spr=="abu"){
-        cout<<setw(12)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(18)<<left<<"Galutinis (Med.)"<<endl;
-        for(int i=0; i<68; i++){
-            cout<<"-";}}
-
     cout<<endl;
-    if(spr=="vidurki"){
-        for(auto Past:Grupe)
-            cout<<setw(12)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.gal<<endl;}
-    else if(spr=="mediana"){
-        for(auto Past:Grupe)
-            cout<<setw(12)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.med<<endl;}
-    else if(spr=="abu"){
-        for(auto Past:Grupe)
-            cout<<setw(12)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.gal<<setw(18)<<left<<fixed<<setprecision(2)<<Past.med<<endl;}
+    for(auto Past:Grupe){
+        cout<<setw(12)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.gal<<endl;
+    }
     return 0;
 }
 
-float Rask_mediana(vector <int> paz){
-    float mediana;
-    sort(paz.begin(), paz.end());
-    if(paz.size()%2==0)
-        mediana=(float(paz[(paz.size()/2)-1])+float(paz[paz.size()/2]))/2;
-    else
-        mediana=float(paz[(paz.size()/2)]);
-    return mediana;
-}
-
 Studentas Stud_iv(){
-    int laik_paz, sum=0;
-    float mediana;
+    int n, laik_paz, sum=0;
     Studentas Pirmas;
+    string laik_paz_pr;
     cout<<"Iveskite studento duomenis: "<<endl;
     cout<<"Vardas: "; cin>>Pirmas.var;
     cout<<"Pavarde: "; cin>>Pirmas.pav;
-    cout<<"Veskite studento pazymius (1-10). 0 ivedimas zymi pazymiu pabaiga: "<<endl;
-    int n=1;
+    cout<<"Kiek pazymiu turi "<<Pirmas.var<<" "<<Pirmas.pav<<": ";
+    string n_pr;
     while(true){
-        cout<<"Pazymys nr. "<<n<<": ";
-        if(!(cin>>laik_paz)||laik_paz<0||laik_paz>10){
-            cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10 arba 0 uzbaigti). Veskite studento pazymius (1-10). 0 ivedimas zymi pazymiu pabaiga: "<<endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            continue;
-        }
-        if(laik_paz==0){
+        cin>>n_pr;
+        if(isNumber(n_pr)&&stoi(n_pr)>=0){
+            n=stoi(n_pr);
             break;
+        }
+        else{
+            cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek pazymiu turi "<<Pirmas.var<<" "<<Pirmas.pav<<": ";;
+        }
+    }
+    for(int a=0; a<n; a++){
+        cout<<"Pazymys nr. "<<a+1<<": ";
+        while(true){
+            cin>>laik_paz_pr;
+            if(isNumber(laik_paz_pr)&&stoi(laik_paz_pr)<=10&&stoi(laik_paz_pr)>=1){
+                laik_paz=stoi(laik_paz_pr);
+                break;
+            }
+            else{
+                cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10). Pazymys nr. "<<a+1<<": ";
+            }
         }
         Pirmas.paz.push_back(laik_paz);
         sum+=laik_paz;
-        n++;
     }
-    cout<<"Iveskite egzamino pazymi: ";
-    while(!(cin>>Pirmas.egz)||Pirmas.egz<1||Pirmas.egz>10){
-        cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10). Iveskite egzamino pazymi: ";
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout<<"Iveskite "<<Pirmas.var<<" "<<Pirmas.pav<<" egzamino pazymi: ";
+    string egz_pr;
+    while(true){
+        cin>>egz_pr;
+        if(isNumber(egz_pr)&&stoi(egz_pr)>=1&&stoi(egz_pr)<=10){
+            Pirmas.egz=stoi(egz_pr);
+            break;
+        }
+        else{
+            cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10). Iveskite egzamino pazymi: ";
+        }
     }
-    if(Pirmas.paz.size()==0){
+    if(n!=0)
+        Pirmas.gal=double(sum)/double(n)*0.4+Pirmas.egz*0.6;
+    else
         Pirmas.gal=Pirmas.egz*0.6;
-        Pirmas.med=Pirmas.egz*0.6;
-    }
-    else{
-        Pirmas.gal=double(sum)/double(n-1)*0.4+Pirmas.egz*0.6;
-        mediana=Rask_mediana(Pirmas.paz);
-        Pirmas.med=mediana*0.4+Pirmas.egz*0.6;
-    }
     return Pirmas;
+}
+
+bool isNumber(string s){
+    for (char c:s) {
+        if(!isdigit(c)){
+            return false;
+        }
+    }
+    return true;
 }

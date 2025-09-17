@@ -98,39 +98,30 @@ float Rask_mediana(vector <int> paz){
 }
 
 Studentas Stud_iv(){
-    int n, laik_paz, sum=0;
+    int laik_paz, sum=0;
     float mediana;
     Studentas Pirmas;
     string laik_paz_pr;
     cout<<"Iveskite studento duomenis: "<<endl;
     cout<<"Vardas: "; cin>>Pirmas.var;
     cout<<"Pavarde: "; cin>>Pirmas.pav;
-    cout<<"Kiek pazymiu turi "<<Pirmas.var<<" "<<Pirmas.pav<<": ";
-    string n_pr;
+    cout<<"Veskite studento pazymius (1-10). 0 ivedimas zymi pazymiu pabaiga: "<<endl;
+    int n=1;
     while(true){
-        cin>>n_pr;
-        if(isNumber(n_pr)&&stoi(n_pr)>=0){
-            n=stoi(n_pr);
+        cout<<"Pazymys nr. "<<n<<": ";
+        cin>>laik_paz_pr;
+        if(isNumber(laik_paz_pr)&&stoi(laik_paz_pr)<=10&&stoi(laik_paz_pr)>=1){
+            laik_paz=stoi(laik_paz_pr);
+            Pirmas.paz.push_back(laik_paz);
+            sum+=laik_paz;
+            n++;
+        }
+        else if(isNumber(laik_paz_pr)&&stoi(laik_paz_pr)==0){
             break;
         }
         else{
-            cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek pazymiu turi "<<Pirmas.var<<" "<<Pirmas.pav<<": ";;
+            cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10 arba 0 uzbaigti). Veskite studento pazymius (1-10). 0 ivedimas zymi pazymiu pabaiga: "<<endl;
         }
-    }
-    for(int a=0; a<n; a++){
-        cout<<"Pazymys nr. "<<a+1<<": ";
-        while(true){
-            cin>>laik_paz_pr;
-            if(isNumber(laik_paz_pr)&&stoi(laik_paz_pr)<=10&&stoi(laik_paz_pr)>=1){
-                laik_paz=stoi(laik_paz_pr);
-                break;
-            }
-            else{
-                cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10). Pazymys nr. "<<a+1<<": ";
-            }
-        }
-        Pirmas.paz.push_back(laik_paz);
-        sum+=laik_paz;
     }
     cout<<"Iveskite "<<Pirmas.var<<" "<<Pirmas.pav<<" egzamino pazymi: ";
     string egz_pr;

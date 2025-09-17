@@ -36,7 +36,7 @@ int main()
     cout<<"Kiek studentu grupeje? ";
     int m;
     while(!(cin>>m)||m<0){
-        cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0. Kiek studentu grupeje? ";
+        cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek studentu grupeje? ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
@@ -85,29 +85,30 @@ float Rask_mediana(vector <int> paz){
 }
 
 Studentas Stud_iv(){
-    int n, laik_paz, sum=0;
+    int laik_paz, sum=0;
     float mediana;
     Studentas Pirmas;
     cout<<"Iveskite studento duomenis: "<<endl;
     cout<<"Vardas: "; cin>>Pirmas.var;
     cout<<"Pavarde: "; cin>>Pirmas.pav;
-    cout<<"Kiek pazymiu turi "<<Pirmas.var<<" "<<Pirmas.pav<<": ";
-    while(!(cin>>n)||n<0){
-        cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek pazymiu turi "<<Pirmas.var<<" "<<Pirmas.pav<<": ";;
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-    for(int a=0; a<n; a++){
-        cout<<"Pazymys nr. "<<a+1<<": ";
-        while(!(cin>>laik_paz)||laik_paz<1||laik_paz>10){
-            cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10). Pazymys nr. "<<a+1<<": ";
+    cout<<"Veskite studento pazymius (1-10). 0 ivedimas zymi pazymiu pabaiga: "<<endl;
+    int n=1;
+    while(true){
+        cout<<"Pazymys nr. "<<n<<": ";
+        if(!(cin>>laik_paz)||laik_paz<0||laik_paz>10){
+            cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10 arba 0 uzbaigti). Veskite studento pazymius (1-10). 0 ivedimas zymi pazymiu pabaiga: "<<endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        };
+            continue;
+        }
+        if(laik_paz==0){
+            break;
+        }
         Pirmas.paz.push_back(laik_paz);
         sum+=laik_paz;
+        n++;
     }
-    cout<<"Iveskite "<<Pirmas.var<<" "<<Pirmas.pav<<" egzamino pazymi: ";
+    cout<<"Iveskite egzamino pazymi: ";
     while(!(cin>>Pirmas.egz)||Pirmas.egz<1||Pirmas.egz>10){
         cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu nuo 1 iki 10). Iveskite egzamino pazymi: ";
         cin.clear();
@@ -118,7 +119,7 @@ Studentas Stud_iv(){
         Pirmas.med=Pirmas.egz*0.6;
     }
     else{
-        Pirmas.gal=double(sum)/double(n)*0.4+Pirmas.egz*0.6;
+        Pirmas.gal=double(sum)/double(n-1)*0.4+Pirmas.egz*0.6;
         mediana=Rask_mediana(Pirmas.paz);
         Pirmas.med=mediana*0.4+Pirmas.egz*0.6;
     }

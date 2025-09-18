@@ -37,6 +37,7 @@ Studentas Stud_iv(int k);
 Studentas Stud_iv_atsitiktinai(int k);
 float Rask_mediana(vector <int> paz);
 void skaitymas(vector <Studentas> &Grupe);
+bool palyginimas(Studentas pirm, Studentas antr);
 void rasymas(vector <Studentas> Grupe, string spr);
 bool isNumber(string s);
 
@@ -111,6 +112,7 @@ int main()
             }
         }
     }
+    sort(Grupe.begin(), Grupe.end(), palyginimas);
     string spr;
     string spr_pr;
     cout<<"Ar isvesti galutini vidurki/mediana/abu (irasykite zodi mazosiomis raidemis)? ";
@@ -309,6 +311,10 @@ void skaitymas(vector <Studentas> &Grupe){
     }
     F.close();
     cout<<"Duomenys nuskaityti is failo. Rastas studentu skaicius: "<<Grupe.size()<<endl;
+}
+
+bool palyginimas(Studentas pirm, Studentas antr){
+    return pirm.var<antr.var;
 }
 
 void rasymas(vector <Studentas> Grupe, string spr){

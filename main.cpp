@@ -247,12 +247,17 @@ Studentas Stud_iv_atsitiktinai(int k){
 
 void skaitymas(vector <Studentas> &Grupe){
     string failo_vardas;
-    cout<<"Iveskite failo varda: ";
-    cin>>failo_vardas;
-    ifstream F(failo_vardas);
-    if(!F){
-        cout<<"Failo nepavyko atidaryti ";
-        return;
+    ifstream F;
+    while(true){
+        cout<<"Iveskite failo varda: ";
+        cin>>failo_vardas;
+        F.open(failo_vardas);
+        if(!F){
+            cout<<"Failo nepavyko atidaryti. Bandykite dar karta: "<<endl;
+        }
+        else{
+            break;
+        }
     }
     string pavadinimai;
     getline(F, pavadinimai);

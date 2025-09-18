@@ -235,7 +235,7 @@ void skaitymas(vector <Studentas> &Grupe){
     cin>>failo_vardas;
     ifstream F(failo_vardas);
     if(!F){
-        cout<<"Failo nepavyko atidaryti ";
+        cout<<"Failo nepavyko atidaryti. ";
         return;
     }
     string pavadinimai;

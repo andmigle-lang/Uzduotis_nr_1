@@ -49,9 +49,14 @@ int main()
     cout<<"Pasirinkite, ar norite, kad duomenys butu skaitomi is failo (rasyti 1), ar ne (rasyti 2): ";
     while(true){
         cin>>pasirinkimas_pries_pr;
-        if(isNumber(pasirinkimas_pries_pr)&&(stoi(pasirinkimas_pries_pr)==1||stoi(pasirinkimas_pries_pr)==2)){
-            pasirinkimas_pries=stoi(pasirinkimas_pries_pr);
-            break;
+        if(isNumber(pasirinkimas_pries_pr)){
+                if(stoi(pasirinkimas_pries_pr)==1||stoi(pasirinkimas_pries_pr)==2){
+                    pasirinkimas_pries=stoi(pasirinkimas_pries_pr);
+                    break;
+                }
+                else{
+                    cout<<"Ivedete neteisinga duomeni (galima vesti tik 1 arba 2): ";
+                }
         }
         else{
             cout<<"Ivedete neteisinga duomeni (galima vesti tik 1 arba 2): ";
@@ -66,9 +71,14 @@ int main()
         int m;
         while(true){
             cin>>m_pr;
-            if(isNumber(m_pr)&&stoi(m_pr)>=0){
-                m=stoi(m_pr);
-                break;
+            if(isNumber(m_pr)){
+                if(stoi(m_pr)>=0){
+                    m=stoi(m_pr);
+                    break;
+                }
+                else{
+                    cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek studentu grupeje? ";
+                }
             }
             else{
                 cout<<"Ivedete neteisinga duomeni (galima ivesti tik sveikaji skaiciu, nemazesni uz 0). Kiek studentu grupeje? ";
@@ -80,9 +90,14 @@ int main()
             cout<<"Pasirinkite, ar pazymius studentui nr. "<<z+1<<" ivesite rankomis (rasyti 1), ar norite, kad jie butu generuoti atsitiktinai (rasyti 2): ";
             while(true){
                 cin>>pasirinkimas_pr;
-                if(isNumber(pasirinkimas_pr)&&(stoi(pasirinkimas_pr)==1||stoi(pasirinkimas_pr)==2)){
-                    pasirinkimas=stoi(pasirinkimas_pr);
-                    break;
+                if(isNumber(pasirinkimas_pr)){
+                        if(stoi(pasirinkimas_pr)==1||stoi(pasirinkimas_pr)==2){
+                            pasirinkimas=stoi(pasirinkimas_pr);
+                            break;
+                        }
+                        else{
+                            cout<<"Ivedete neteisinga duomeni (galima vesti tik 1 arba 2): ";
+                        }
                 }
                 else{
                     cout<<"Ivedete neteisinga duomeni (galima vesti tik 1 arba 2): ";
@@ -109,6 +124,7 @@ int main()
             cout<<"Ivedete neteisinga duomeni. Iveskite tik viena is siu zodziu: vidurki/mediana/abu: ";
         }
     }
+    rasymas(Grupe, spr);
     if(spr=="vidurki"){
         cout<<setw(20)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Vid.)"<<endl;
         for(int i=0; i<58; i++){
@@ -235,7 +251,7 @@ void skaitymas(vector <Studentas> &Grupe){
     cin>>failo_vardas;
     ifstream F(failo_vardas);
     if(!F){
-        cout<<"Failo nepavyko atidaryti. ";
+        cout<<"Failo nepavyko atidaryti ";
         return;
     }
     string pavadinimai;

@@ -127,30 +127,6 @@ int main()
         }
     }
     rasymas(Grupe, spr);
-    if(spr=="vidurki"){
-        cout<<setw(20)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Vid.)"<<endl;
-        for(int i=0; i<58; i++){
-            cout<<"-";}}
-    else if(spr=="mediana"){
-        cout<<setw(20)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Med.)"<<endl;
-        for(int i=0; i<58; i++){
-            cout<<"-";}}
-    else if(spr=="abu"){
-        cout<<setw(20)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(18)<<left<<"Galutinis (Med.)"<<endl;
-        for(int i=0; i<76; i++){
-            cout<<"-";}}
-
-    cout<<endl;
-    if(spr=="vidurki"){
-        for(auto Past:Grupe)
-            cout<<setw(20)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.gal<<endl;}
-    else if(spr=="mediana"){
-        for(auto Past:Grupe)
-            cout<<setw(20)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.med<<endl;}
-    else if(spr=="abu"){
-        for(auto Past:Grupe)
-            cout<<setw(20)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.gal<<setw(18)<<left<<fixed<<setprecision(2)<<Past.med<<endl;}
-
     return 0;
 }
 

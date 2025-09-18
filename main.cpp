@@ -230,11 +230,24 @@ void skaitymas(vector <Studentas> &Grupe){
         cout<<"Iveskite failo varda: ";
         cin>>failo_vardas;
         F.open(failo_vardas);
-        if(!F){
-            cout<<"Failo nepavyko atidaryti. Bandykite dar karta: "<<endl;
+        if(F){
+            break;
         }
         else{
-            break;
+            string pasirink;
+            while(true){
+                cout<<"Failo nepavyko atidaryti. Ar norite bandyti dar karta (rasykite 1), ar norite uzbaigti programa (rasykite 2)? ";
+                cin>>pasirink;
+                if(pasirink=="1"){
+                    break;
+                }
+                else if(pasirink=="2"){
+                    exit(0);
+                }
+                else{
+                    cout<<"Neteisingas pasirinkimas. Bandykite dar karta."<<endl;
+                }
+            }
         }
     }
     string pavadinimai;

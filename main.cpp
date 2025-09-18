@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <fstream>
+#include <numeric>
 #include <cstdlib>
 #include <ctime>
 #include <cctype> //funckijai isdigit(), nes kai kuriems kompiliatoriams neveikia
@@ -36,6 +37,7 @@ Studentas Stud_iv(int k);
 Studentas Stud_iv_atsitiktinai(int k);
 float Rask_mediana(vector <int> paz);
 void skaitymas(vector <Studentas> &Grupe);
+void rasymas(vector <Studentas> Grupe, string spr);
 bool isNumber(string s);
 
 
@@ -286,6 +288,39 @@ void skaitymas(vector <Studentas> &Grupe){
     }
     F.close();
     cout<<"Duomenys nuskaityti is failo. Rastas studentu skaicius: "<<Grupe.size()<<endl;
+}
+
+void rasymas(vector <Studentas> Grupe, string spr){
+    ofstream R("rezultatai.txt");
+    if(!R){
+        cout<<"Klaida: Nepavyko sukurti arba atidaryti failo 'rezultatai.txt'. Patikrinkite direktorija ir teises."<<endl;
+        return;
+    }
+    if(spr=="vidurki"){
+        R<<setw(20)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Vid.)"<<endl;
+        for(int i=0; i<58; i++){
+            R<<"-";}}
+    else if(spr=="mediana"){
+        R<<setw(20)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Med.)"<<endl;
+        for(int i=0; i<58; i++){
+            R<<"-";}}
+    else if(spr=="abu"){
+        R<<setw(20)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde"<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(18)<<left<<"Galutinis (Med.)"<<endl;
+        for(int i=0; i<76; i++){
+            R<<"-";}}
+
+    R<<endl;
+    if(spr=="vidurki"){
+        for(auto Past:Grupe)
+            R<<setw(20)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.gal<<endl;}
+    else if(spr=="mediana"){
+        for(auto Past:Grupe)
+            R<<setw(20)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.med<<endl;}
+    else if(spr=="abu"){
+        for(auto Past:Grupe)
+            R<<setw(20)<<left<<Past.var<<setw(20)<<left<<Past.pav<<setw(18)<<left<<fixed<<setprecision(2)<<Past.gal<<setw(18)<<left<<fixed<<setprecision(2)<<Past.med<<endl;}
+
+    R.close();
 }
 
 bool isNumber(string s){

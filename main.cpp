@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cctype> //funckijai isdigit(), nes kai kuriems kompiliatoriams neveikia
+#include <sstream>
 
 using std::cout;
 using std::cin;
@@ -27,6 +28,7 @@ using std::ifstream;
 using std::ofstream;
 using std::accumulate;
 using std::to_string;
+using std::stringstream;
 
 struct Studentas {
     string var;
@@ -133,7 +135,7 @@ int main()
         }
     }
     rasymas(Grupe, spr);*/
-    failu_generavimas(100);
+    failu_generavimas(10000000);
     return 0;
 }
 
@@ -364,7 +366,7 @@ bool isNumber(string s) {
     return true;
 }
 
-void failu_generavimas(int k) {
+/*void failu_generavimas(int k) {
     string k1 = to_string(k);
     string failo_vardas = "Generuoti_studentai" + k1 + ".txt";
     ofstream G(failo_vardas);
@@ -402,12 +404,54 @@ void failu_generavimas(int k) {
         }
         G << endl;
     }
+    G.close();
 }
+*/
 
+void failu_generavimas(int k) {
+    string failo_vardas = "Generuoti_studentai" + to_string(k) + ".txt";
+    string outputas;
+    stringstream my_buffer;
+    string vardas, pavarde;
+    srand(time(0));
+    cout << "Kiek pazymiu sugeneruoti (nuo 1 iki 20)? ";
+    string paz_sk_pr;
+    int paz_sk;
+    while (true) {
+        cin >> paz_sk_pr;
+        if (isNumber(paz_sk_pr)) {
+            if (stoi(paz_sk_pr) <= 20 && stoi(paz_sk_pr) >= 1) {
+                paz_sk = stoi(paz_sk_pr);
+                break;
+            }
+            else {
+                cout << "Ivedete neteisinga duomeni (galima vesti tik sveikus skaicius nuo 1 iki 20): ";
+            }
+        }
+        else {
+            cout << "Ivedete neteisinga duomeni (galima vesti tik sveikus skaicius nuo 1 iki 20): ";
+        }
+    }
+    my_buffer << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde";
+    for (int i = 0; i < paz_sk; i++) {
+        my_buffer << setw(8) << right << "ND" + to_string(i + 1);
+    }
+    my_buffer << setw(8) << right << "Egz." << endl;
+    for (int i = 0; i < k; i++) {
+        vardas = "Vardas" + to_string(i + 1);
+        pavarde = "Pavarde" + to_string(i + 1);
+        my_buffer << setw(20) << left << vardas << setw(20) << left << pavarde;
+        for (int i = 0; i <= paz_sk; i++) {
+            my_buffer << setw(8) << right << (rand() % 10) + 1;
+        }
+        my_buffer << endl;
+    }
+    outputas = my_buffer.str();
+    ofstream G(failo_vardas);
+    G << outputas;
+    G.close();
 
-/*void failu_generavimas(int k) {
-
-}*/
+}
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
@@ -419,4 +463,5 @@ void failu_generavimas(int k) {
 //   4. Use the Error List window to view errors
 //   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
 

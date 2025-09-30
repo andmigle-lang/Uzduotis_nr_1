@@ -47,6 +47,8 @@ bool palyginimas(Studentas pirm, Studentas antr);
 void rasymas(vector <Studentas> Grupe, string spr);
 bool isNumber(string s);
 void failu_generavimas(int k);
+void studentu_rusiavimas(const vector <Studentas>& Grupe, int k);
+void skaitymas_is_genruoto_failo(vector<Studentas>& Grupe, const string& failo_vardas);
 
 
 int main()
@@ -135,7 +137,21 @@ int main()
         }
     }
     rasymas(Grupe, spr);*/
-    failu_generavimas(10000000);
+    /*
+    for (int i=3; i<=7; i++){
+        failu_generavimas(pow(10, i));
+    }
+    */
+    vector<int> sizes = {1000, 10000, 100000, 1000000, 10000000};
+    for (int size : sizes) {
+        failu_generavimas(size);
+    }
+    for (int size : sizes) {
+        string input_file = "Generuoti_studentai" + to_string(size) + ".txt";
+        vector <Studentas> Grupe1;
+        skaitymas_is_failo(Grupe1, input_file);
+        studentu_rusiavimas(Grupe1, size);
+    }
     return 0;
 }
 
@@ -414,6 +430,7 @@ void failu_generavimas(int k) {
     stringstream my_buffer;
     string vardas, pavarde;
     srand(time(0));
+    cout << "Generuojamas failas " + failo_vardas << endl;
     cout << "Kiek pazymiu sugeneruoti (nuo 1 iki 20)? ";
     string paz_sk_pr;
     int paz_sk;
@@ -450,6 +467,52 @@ void failu_generavimas(int k) {
     ofstream G(failo_vardas);
     G << outputas;
     G.close();
+}
+
+void studentu_rusiavimas(const vector <Studentas>& Grupe, int k) {
+    vector <Studentas> vargsiukai;
+    vector <Studentas> kietiakai;
+
+    for (const auto& studentas : Grupe) {
+        if (studentas.gal < 5.0) {
+            vargsiukai.push_back(studentas);
+        }
+        else {
+            kietiakai.push_back(studentas);
+        }
+    }
+    stringstream vargsiukai_buffer, kietiakai_buffer;
+    vargsiukai_buffer << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(18) << left << "Galutinis (Vid.)" << endl;
+    for (int i = 0; i < 50; i++) {
+        vargsiukai_buffer << "-";
+    }
+    for (const auto& studentas : vargsiukai) {
+        vargsiukai_buffer << setw(20) << left << studentas.var << setw(20) << left << studentas.pav << setw(18) << left << fixed << setprecision(2) << studentas.gal << endl;
+    }
+
+    kietiakai_buffer << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(18) << left << "Galutinis (Vid.)" << endl;
+    for (int i = 0; i < 50; i++) {
+        kietiakai_buffer << "-";
+    }
+    for (const auto& studentas : kietiakai) {
+        kietiakai_buffer << setw(20) << left << studentas.var << setw(20) << left << studentas.pav << setw(18) << left << fixed << setprecision(2) << studentas.gal << endl;
+    }
+    string failo_vardas1 = "vargsiukai" + to_string(k) + ".txt";
+    ofstream vargsiukai_failas(failo_vardas1);
+    vargsiukai_failas << vargsiukai_buffer.str();
+    vargsiukai_failas.close();
+
+    string failo_vardas2 = "kietiakai" + to_string(k) + ".txt";
+    ofstream kietiakai_failas(failo_vardas2);
+    kietiakai_failas << kietiakai_buffer.str();
+    kietiakai_failas.close();
+
+    cout << "Surusiuota studentu:" << endl;
+    cout << "Vargsai (< 5.0): " << vargsiukai.size() << " studentai" << endl;
+    cout << "Kietiakiai (>= 5.0): " << kietiakai.size() << " studentai" << endl;
+}
+
+void skaitymas_is_genruoto_failo(vector<Studentas>& Grupe, const string& failo_vardas) {
 
 }
 
@@ -463,5 +526,6 @@ void failu_generavimas(int k) {
 //   4. Use the Error List window to view errors
 //   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
 
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Prerequisites
 *.d
 
@@ -44,3 +45,25 @@ obj/
 bin/ 
 *.cbp 
 *.layout
+=======
+Debug/
+Release/
+x64/
+
+*.user
+*.suo
+*.opensdf
+*.VC.db
+*.VC.opendb
+*.pdb
+*.obj
+*.exe
+*.lik
+*.idb
+.vs/
+
+*.vcxproj.user
+*.filters
+
+*.txt
+>>>>>>> master

@@ -1,13 +1,13 @@
 #include "palyginimas.h"
 
-bool palyginimas_vardas(Studentas pirm, Studentas antr) {
+bool palyginimas_vardas(const Studentas& pirm, const Studentas& antr) {
     return pirm.var < antr.var;
 }
 
-bool palyginimas_pavarde(Studentas pirm, Studentas antr) {
+bool palyginimas_pavarde(const Studentas& pirm, const Studentas& antr) {
     return pirm.pav < antr.pav;
 }
 
-bool palyginimas_galutinis(Studentas pirm, Studentas antr) {
+bool palyginimas_galutinis(const Studentas& pirm, const Studentas& antr) {
     return pirm.gal < antr.gal;
 }

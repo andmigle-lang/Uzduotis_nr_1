@@ -7,9 +7,14 @@
 #include "mediana.h"
 #include "Simple.h"
 #include "Studentas.h"
+#include <chrono>
 
 using std::cin;
 using std::cout;
+using std::to_string;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration;
+using std::endl;
 
 int main()
 {
@@ -117,24 +122,28 @@ int main()
         rasymas(Grupe, spr);
     }
     else {
-        failu_generavimas(1000);
-        vector <Studentas> Grupe1;
-        skaitymas_is_genruoto_failo(Grupe1, "Generuoti_studentai1000.txt");
-        studentu_rusiavimas(Grupe1, 1000);
-        //vector<int> sizes = { 1000, 10000, 100000, 1000000, 10000000 };
-        //for (int size : sizes) {
-        //    failu_generavimas(size);
-        //}
-        //for (int size : sizes) {
-        //    string input_file = "Generuoti_studentai" + to_string(size) + ".txt";
-        //    vector <Studentas> Grupe1;
-        //    skaitymas_is_genruoto_failo(Grupe1, input_file);
-        //    studentu_rusiavimas(Grupe1, size);
-        //}
+        //failu_generavimas(1000);
+        //vector <Studentas> Grupe1;
+        //skaitymas_is_genruoto_failo(Grupe1, "Generuoti_studentai1000.txt");
+        //studentu_rusiavimas(Grupe1, 1000);
+        vector<int> sizes = { 1000, 10000, 100000, 1000000, 10000000 };
+        for (int size : sizes) {
+            failu_generavimas(size);
+        }
+        for (int j = 0; j < 3; j++) {
+            auto start_visas = high_resolution_clock::now();
+            for (int size : sizes) {
+                string input_file = "Generuoti_studentai" + to_string(size) + ".txt";
+                vector <Studentas> Grupe1;
+                skaitymas_is_genruoto_failo(Grupe1, input_file);
+                studentu_rusiavimas(Grupe1, size);
+            }
+            duration<double> diff_visas = high_resolution_clock::now() - start_visas;
+            cout << "Visas procesas uztruko: " << diff_visas.count() << endl;
+        }
     }
     return 0;
 }
-
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

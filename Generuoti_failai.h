@@ -11,7 +11,9 @@
 #include <ctime>
 #include <chrono>
 #include "palyginimas.h"
+#include <iterator>     // naudoja istreambuf_iterator
 
 void failu_generavimas(int k);
 void studentu_rusiavimas(vector <Studentas>& Grupe, int k);
 void skaitymas_is_genruoto_failo(vector<Studentas>& Grupe, const string& failo_vardas);
+void greitas_skaitymas(vector<Studentas>& Grupe, const string& failo_vardas);

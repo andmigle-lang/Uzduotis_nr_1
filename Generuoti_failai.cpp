@@ -14,6 +14,7 @@ using std::fixed;
 using std::setprecision;
 using std::chrono::high_resolution_clock;
 using std::chrono::duration;
+//using std::istreambuf_iterator;
 
 void failu_generavimas(int k) {
 
@@ -114,7 +115,7 @@ void studentu_rusiavimas(vector <Studentas>& Grupe, int k) {
         }
     }
     duration<double> diff_irasu_dalijimo = high_resolution_clock::now() - start_irasu_dalijimo;
-    cout << k << " irasu dalijimo i dvi grupes laikas: " << diff_rusiavimas.count() << endl;
+    cout << k << " irasu dalijimo i dvi grupes laikas: " << diff_irasu_dalijimo.count() << endl;
 
     auto start_irasymas_i_vargsiuku_buferi = high_resolution_clock::now();
     stringstream vargsiukai_buffer, kietiakai_buffer;
@@ -127,7 +128,7 @@ void studentu_rusiavimas(vector <Studentas>& Grupe, int k) {
         vargsiukai_buffer << setw(20) << left << studentas.var << setw(20) << left << studentas.pav << setw(18) << left << fixed << setprecision(2) << studentas.gal << endl;
     }
     duration<double> diff_irasymas_i_vargsiuku_buferi = high_resolution_clock::now() - start_irasymas_i_vargsiuku_buferi;
-    cout << k << "irasu irasymo i vargsiuku buferi laikas: " << diff_irasymas_i_vargsiuku_buferi.count() << endl;
+    cout << k << " irasu irasymo i vargsiuku buferi laikas: " << diff_irasymas_i_vargsiuku_buferi.count() << endl;
 
     auto start_irasymas_i_kietiaku_buferi = high_resolution_clock::now();
     kietiakai_buffer << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(18) << left << "Galutinis (Vid.)" << endl;
@@ -139,7 +140,7 @@ void studentu_rusiavimas(vector <Studentas>& Grupe, int k) {
         kietiakai_buffer << setw(20) << left << studentas.var << setw(20) << left << studentas.pav << setw(18) << left << fixed << setprecision(2) << studentas.gal << endl;
     }
     duration<double> diff_irasymas_i_kietiaku_buferi = high_resolution_clock::now() - start_irasymas_i_kietiaku_buferi;
-    cout << k << "irasu irasymo i kietiaku buferi laikas: " << diff_irasymas_i_kietiaku_buferi.count() << endl;
+    cout << k << " irasu irasymo i kietiaku buferi laikas: " << diff_irasymas_i_kietiaku_buferi.count() << endl;
 
     auto start_irasymas_i_vargsiuku_faila = high_resolution_clock::now();
     string failo_vardas1 = "vargsiukai" + to_string(k) + ".txt";
@@ -147,7 +148,7 @@ void studentu_rusiavimas(vector <Studentas>& Grupe, int k) {
     vargsiukai_failas << vargsiukai_buffer.str();
     vargsiukai_failas.close();
     duration<double> diff_irasymas_i_vargsiuku_faila = high_resolution_clock::now() - start_irasymas_i_vargsiuku_faila;
-    cout << k << "irasu irasymo i vargsiuku faila laikas: " << diff_irasymas_i_vargsiuku_faila.count() << endl;
+    cout << k << " irasu irasymo i vargsiuku faila laikas: " << diff_irasymas_i_vargsiuku_faila.count() << endl;
 
     auto start_irasymas_i_kietiaku_faila = high_resolution_clock::now();
     string failo_vardas2 = "kietiakai" + to_string(k) + ".txt";
@@ -155,7 +156,7 @@ void studentu_rusiavimas(vector <Studentas>& Grupe, int k) {
     kietiakai_failas << kietiakai_buffer.str();
     kietiakai_failas.close();
     duration<double> diff_irasymas_i_kietiaku_faila = high_resolution_clock::now() - start_irasymas_i_kietiaku_faila;
-    cout << k << "irasu irasymo i kietiaku faila laikas: " << diff_irasymas_i_kietiaku_faila.count() << endl;
+    cout << k << " irasu irasymo i kietiaku faila laikas: " << diff_irasymas_i_kietiaku_faila.count() << endl;
 
     cout << "Surusiuota studentu:" << endl;
     cout << "Vargsai (< 5.0): " << vargsiukai.size() << " studentai" << endl;
@@ -227,3 +228,160 @@ void skaitymas_is_genruoto_failo(vector<Studentas>& Grupe, const string& failo_v
     cout << "Failo is " << Grupe.size() << " irasu nuskaitymo laikas: " << diff_skaitymas.count() << endl;
     cout << "Duomenys nuskaityti is failo. Rastas studentu skaicius: " << Grupe.size() << endl;
 }
+
+//void greitas_skaitymas(vector<Studentas>& Grupe, const string& failo_vardas) {
+//    auto start_skaitymas = high_resolution_clock::now();
+//    ifstream F(failo_vardas);
+//    
+//    string turinys((istreambuf_iterator<char>(F)), istreambuf_iterator<char>());
+//    F.close();
+//    stringstream buffer(turinys);
+//    string pavadinimai;
+//    getline(buffer, pavadinimai);
+//    string eilute;
+//    float mediana;
+//    int skait = 0;
+//    while (getline(buffer, eilute)) {
+//        if (eilute.empty()) {
+//            continue;
+//        }
+//        skait++;
+//        Studentas studentas;
+//        stringstream vienas_studentas(eilute);
+//        vienas_studentas >> studentas.var >> studentas.pav;
+//
+//        vector <int> pazymiai_lokaliai;
+//        int pazymys_lokalus;
+//        while (vienas_studentas >> pazymys_lokalus) {
+//            if (pazymys_lokalus >= 1 && pazymys_lokalus <= 10) {
+//                pazymiai_lokaliai.push_back(pazymys_lokalus);
+//            }
+//        }
+//        if (!pazymiai_lokaliai.empty()) {
+//            studentas.egz = pazymiai_lokaliai.back();
+//            pazymiai_lokaliai.pop_back();
+//            studentas.paz = pazymiai_lokaliai;
+//        }
+//        if (!studentas.paz.empty()) {
+//            int sum = accumulate(studentas.paz.begin(), studentas.paz.end(), 0);
+//            studentas.gal= (double(sum) / double(studentas.paz.size())) * 0.4 + studentas.egz * 0.6;
+//            mediana = Rask_mediana(studentas.paz);
+//            studentas.med = mediana * 0.4 + studentas.egz * 0.6;
+//        }
+//        else {
+//            studentas.gal = studentas.egz * 0.6;
+//            studentas.med = studentas.egz * 0.6;
+//        }
+//        Grupe.push_back(studentas);
+//    }
+//    duration<double> diff_skaitymas = high_resolution_clock::now() - start_skaitymas;
+//    cout << "Failo is " << Grupe.size() << " irasu nuskaitymo laikas: " << diff_skaitymas.count() << endl;
+//    cout << "Duomenys nuskaityti is failo. Rastas studentu skaicius: " << Grupe.size() << endl;
+//}
+
+//void greitas_skaitymas(vector<Studentas>& Grupe, const string& failo_vardas) {
+//    auto start_skaitymas = high_resolution_clock::now();
+//    ifstream F(failo_vardas);
+//    if (!F) {
+//        cout << "Klaida: Nepavyko atidaryti failo " << failo_vardas << endl;
+//        return;
+//    }
+//
+//    // crude reserve estimate based on file size (use 100 chars/line as a safe heuristic)
+//    F.seekg(0, std::ios::end);
+//    std::streamoff filesize = F.tellg();
+//    F.seekg(0);
+//    if (filesize > 0) {
+//        size_t est_lines = static_cast<size_t>(filesize / 100);
+//        if (est_lines < 1000) est_lines = 1000;
+//        Grupe.reserve(est_lines);
+//    }
+//
+//    // Skip header line (same as original)
+//    string pavadinimai;
+//    getline(F, pavadinimai);
+//
+//    string eilute;
+//    float mediana;
+//    int skait = 0;
+//
+//    while (getline(F, eilute)) {
+//        if (eilute.empty()) continue;
+//        skait++;
+//
+//        Studentas studentas;
+//        const char* p = eilute.c_str();
+//        const char* end = p + eilute.size();
+//
+//        // parse vardas
+//        while (p < end && isspace((unsigned char)*p)) ++p;
+//        const char* start = p;
+//        while (p < end && !isspace((unsigned char)*p)) ++p;
+//        studentas.var.assign(start, p - start);
+//
+//        // parse pavarde
+//        while (p < end && isspace((unsigned char)*p)) ++p;
+//        start = p;
+//        while (p < end && !isspace((unsigned char)*p)) ++p;
+//        studentas.pav.assign(start, p - start);
+//
+//        // parse remaining integers (grades)
+//        vector<int> pazymiai_lokaliai;
+//        while (p < end) {
+//            while (p < end && !(*p == '-' || (*p >= '0' && *p <= '9'))) ++p;
+//            if (p >= end) break;
+//
+//            int sign = 1;
+//            if (*p == '-') { sign = -1; ++p; }
+//
+//            int value = 0;
+//            bool any_digit = false;
+//            while (p < end && (*p >= '0' && *p <= '9')) {
+//                any_digit = true;
+//                value = value * 10 + (*p - '0');
+//                ++p;
+//            }
+//
+//            if (any_digit) {
+//                int final_val = value * sign;
+//                if (final_val >= 1 && final_val <= 10) {
+//                    pazymiai_lokaliai.push_back(final_val);
+//                }
+//                else {
+//                    cout << "Studento nr. " << skait << " pazymiuose buvo klaida (ne sveikasis skaicius nuo 1 iki 10): "
+//                        << final_val << ". Klaida pasalinta is skaiciavimu" << endl;
+//                }
+//            }
+//        }
+//
+//        // last numeric token is egzaminas
+//        if (!pazymiai_lokaliai.empty()) {
+//            studentas.egz = pazymiai_lokaliai.back();
+//            pazymiai_lokaliai.pop_back();
+//            studentas.paz = pazymiai_lokaliai;
+//        }
+//        else {
+//            studentas.egz = 0;
+//            studentas.paz.clear();
+//        }
+//
+//        // compute gal and med as original
+//        if (!studentas.paz.empty()) {
+//            int sum = accumulate(studentas.paz.begin(), studentas.paz.end(), 0);
+//            studentas.gal = (double(sum) / double(studentas.paz.size())) * 0.4 + studentas.egz * 0.6;
+//            mediana = Rask_mediana(studentas.paz);
+//            studentas.med = mediana * 0.4 + studentas.egz * 0.6;
+//        }
+//        else {
+//            studentas.gal = studentas.egz * 0.6;
+//            studentas.med = studentas.egz * 0.6;
+//        }
+//
+//        Grupe.push_back(studentas);
+//    }
+//
+//    F.close();
+//    duration<double> diff_skaitymas = high_resolution_clock::now() - start_skaitymas;
+//    cout << "Failo is " << Grupe.size() << " irasu nuskaitymo laikas: " << diff_skaitymas.count() << endl;
+//    cout << "Duomenys nuskaityti is failo. Rastas studentu skaicius: " << Grupe.size() << endl;
+//}

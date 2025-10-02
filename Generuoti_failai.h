@@ -9,7 +9,9 @@
 #include "is_number.h"
 #include <cstdlib>
 #include <ctime>
+#include <chrono>
+#include "palyginimas.h"
 
 void failu_generavimas(int k);
-void studentu_rusiavimas(const vector <Studentas>& Grupe, int k);
+void studentu_rusiavimas(vector <Studentas>& Grupe, int k);
 void skaitymas_is_genruoto_failo(vector<Studentas>& Grupe, const string& failo_vardas);

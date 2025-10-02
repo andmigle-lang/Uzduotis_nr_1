@@ -100,7 +100,7 @@ int main()
                 }
             }
         }
-        sort(Grupe.begin(), Grupe.end(), palyginimas);
+        sort(Grupe.begin(), Grupe.end(), palyginimas_vardas);
         string spr;
         string spr_pr;
         cout << "Ar isvesti galutini vidurki/mediana/abu (irasykite zodi mazosiomis raidemis)? ";

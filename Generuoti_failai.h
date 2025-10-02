@@ -14,6 +14,5 @@
 #include <iterator>     // naudoja istreambuf_iterator
 
 void failu_generavimas(int k);
-void studentu_rusiavimas(vector <Studentas>& Grupe, int k);
-void skaitymas_is_genruoto_failo(vector<Studentas>& Grupe, const string& failo_vardas);
-void greitas_skaitymas(vector<Studentas>& Grupe, const string& failo_vardas);
+void studentu_rusiavimas(vector <Studentas>& Grupe, int k, double& diff_rusiavimas1, double& diff_irasu_dalijimo1, double& diff_irasymas_i_vargsiuku_faila1, double& diff_irasymas_i_kietiaku_faila1);
+void skaitymas_is_genruoto_failo(vector<Studentas>& Grupe, const string& failo_vardas, double& diff_skaitymas1);

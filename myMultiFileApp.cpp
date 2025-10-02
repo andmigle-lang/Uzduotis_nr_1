@@ -12,12 +12,11 @@
 using std::cin;
 using std::cout;
 using std::to_string;
+using std::endl;
 using std::chrono::high_resolution_clock;
 using std::chrono::duration;
-using std::endl;
 
-int main()
-{
+int main(){
     string d_pr;
     int d;
     cout << "Ar norite dirbti su studentai.txt failais (rasyti 1), ar generuoti naujus failus (5 failai su nuo 1000 iki 10000000 studentu) (rasyti 2): ";
@@ -122,36 +121,59 @@ int main()
         rasymas(Grupe, spr);
     }
     else {
-        //failu_generavimas(1000);
-        //vector <Studentas> Grupe1;
-        //skaitymas_is_genruoto_failo(Grupe1, "Generuoti_studentai1000.txt");
-        //studentu_rusiavimas(Grupe1, 1000);
         vector<int> sizes = { 1000, 10000, 100000, 1000000, 10000000 };
         for (int size : sizes) {
             failu_generavimas(size);
         }
-        for (int j = 0; j < 3; j++) {
-            auto start_visas = high_resolution_clock::now();
-            for (int size : sizes) {
+
+        vector<double> vid_skaitymas(sizes.size(), 0.0);
+        vector<double> vid_rusiavimas(sizes.size(), 0.0);
+        vector<double> vid_dalijimas(sizes.size(), 0.0);
+        vector<double> vid_vargsiukai(sizes.size(), 0.0);
+        vector<double> vid_kietiakai(sizes.size(), 0.0);
+        int a = sizes.size();
+        const int runs = 3;
+        for (int j = 0; j < runs; ++j) {
+            cout << j+1 << " iteracija:" << endl;
+            
+            
+            for (int i = 0; i < a; ++i) {
+                int size = sizes[i];
                 string input_file = "Generuoti_studentai" + to_string(size) + ".txt";
-                vector <Studentas> Grupe1;
-                skaitymas_is_genruoto_failo(Grupe1, input_file);
-                studentu_rusiavimas(Grupe1, size);
+                vector<Studentas> Grupe1;
+
+                double diff_skaitymas1 = 0.0;
+                double diff_rusiavimas1 = 0.0;
+                double diff_irasu_dalijimo1 = 0.0;
+                double diff_irasymas_i_vargsiuku_faila1 = 0.0;
+                double diff_irasymas_i_kietiaku_faila1 = 0.0;
+
+                skaitymas_is_genruoto_failo(Grupe1, input_file, diff_skaitymas1);
+                studentu_rusiavimas(Grupe1, size,
+                    diff_rusiavimas1,
+                    diff_irasu_dalijimo1,
+                    diff_irasymas_i_vargsiuku_faila1,
+                    diff_irasymas_i_kietiaku_faila1);
+
+                vid_skaitymas[i] += diff_skaitymas1;
+                vid_rusiavimas[i] += diff_rusiavimas1;
+                vid_dalijimas[i] += diff_irasu_dalijimo1;
+                vid_vargsiukai[i] += diff_irasymas_i_vargsiuku_faila1;
+                vid_kietiakai[i] += diff_irasymas_i_kietiaku_faila1;
+                cout << size<< " irasu testo laikas: " << diff_skaitymas1+ diff_rusiavimas1 + diff_irasu_dalijimo1+ diff_irasymas_i_vargsiuku_faila1+ diff_irasymas_i_kietiaku_faila1 << " s" << endl;
             }
-            duration<double> diff_visas = high_resolution_clock::now() - start_visas;
-            cout << "Visas procesas uztruko: " << diff_visas.count() << endl;
+            
+        }
+
+        cout << "VIDURKIAI IS " << runs << " ITERACIJU: " << endl;
+        for (int i = 0; i < a; ++i) {
+            cout << "\nFailo dydis: " << sizes[i] << endl;
+            cout << "Skaitymo vidurkis: " << (vid_skaitymas[i] / runs) << " s" << endl;
+            cout << "Rusiavimo vidurkis: " << (vid_rusiavimas[i] / runs) << " s" << endl;
+            cout << "Dalijimo vidurkis: " << (vid_dalijimas[i] / runs) << " s" << endl;
+            cout << "Vargsiuku irasymo vidurkis: " << (vid_vargsiukai[i] / runs) << " s" << endl;
+            cout << "Kietiaku irasymo vidurkis: " << (vid_kietiakai[i] / runs) << " s" << endl;
         }
     }
     return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

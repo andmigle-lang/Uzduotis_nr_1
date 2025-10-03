@@ -119,8 +119,29 @@ int main(){
             }
         }
         rasymas(Grupe, spr);
+
     }
     else {
+        
+        cout << "Pasirinkite, pagal kuri parametra rusiuosite " << endl;
+        cout << "(1 - pagal varda, 2 - pagal pavarde, 3 - pagal galutini pazymi): ";
+        string pasirinkimas_pr;
+        int pasirinkimas;
+        while (true) {
+            cin >> pasirinkimas_pr;
+            if (isNumber(pasirinkimas_pr)) {
+                pasirinkimas = stoi(pasirinkimas_pr);
+                if (pasirinkimas >= 1 && pasirinkimas <= 3) {
+                    break;
+                }
+                else {
+                    cout << "Ivedete neteisinga duomeni (galima vesti tik skaicius 1, 2 arba 3): ";
+                }
+            }
+            else {
+                cout << "Ivedete neteisinga duomeni (galima vesti tik skaicius 1, 2 arba 3): ";
+            }
+        }
         vector<int> sizes = { 1000, 10000, 100000, 1000000, 10000000 };
         for (int size : sizes) {
             failu_generavimas(size);
@@ -153,7 +174,7 @@ int main(){
                     diff_rusiavimas1,
                     diff_irasu_dalijimo1,
                     diff_irasymas_i_vargsiuku_faila1,
-                    diff_irasymas_i_kietiaku_faila1);
+                    diff_irasymas_i_kietiaku_faila1, pasirinkimas);
 
                 vid_skaitymas[i] += diff_skaitymas1;
                 vid_rusiavimas[i] += diff_rusiavimas1;

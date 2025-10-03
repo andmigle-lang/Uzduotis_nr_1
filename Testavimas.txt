@@ -1,0 +1,215 @@
+Ar norite dirbti su studentai.txt failais (rasyti 1), ar generuoti naujus failus (5 failai su nuo 1000 iki 10000000 studentu) (rasyti 2): 2
+Pasirinkite, pagal kuri parametra rusiuosite
+(1 - pagal varda, 2 - pagal pavarde, 3 - pagal galutini pazymi): 1
+Generuojamas failas Generuoti_studentai1000.txt
+Kiek pazymiu sugeneruoti (nuo 1 iki 20)? 3
+Irasymas i buferi failui Generuoti_studentai1000.txt uztruko: 0.0022212
+Irasymas i faila failui Generuoti_studentai1000.txt  uztruko: 0.00116
+Generuojamas failas Generuoti_studentai10000.txt
+Kiek pazymiu sugeneruoti (nuo 1 iki 20)? 3
+Irasymas i buferi failui Generuoti_studentai10000.txt uztruko: 0.0227819
+Irasymas i faila failui Generuoti_studentai10000.txt  uztruko: 0.0044783
+Generuojamas failas Generuoti_studentai100000.txt
+Kiek pazymiu sugeneruoti (nuo 1 iki 20)? 3
+Irasymas i buferi failui Generuoti_studentai100000.txt uztruko: 0.169165
+Irasymas i faila failui Generuoti_studentai100000.txt  uztruko: 0.0336629
+Generuojamas failas Generuoti_studentai1000000.txt
+Kiek pazymiu sugeneruoti (nuo 1 iki 20)? 3
+Irasymas i buferi failui Generuoti_studentai1000000.txt uztruko: 1.43714
+Irasymas i faila failui Generuoti_studentai1000000.txt  uztruko: 0.21791
+Generuojamas failas Generuoti_studentai10000000.txt
+Kiek pazymiu sugeneruoti (nuo 1 iki 20)? 3
+Irasymas i buferi failui Generuoti_studentai10000000.txt uztruko: 14.0468
+Irasymas i faila failui Generuoti_studentai10000000.txt  uztruko: 1.77576
+1 iteracija:
+Failo is 1000 irasu nuskaitymo laikas: 0.0055916 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000
+1000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.000214 s
+1000 irasu dalijimo i dvi grupes laikas: 0.0003083 s
+1000 irasu irasymo i vargsiuku faila laikas: 0.0019849 s
+1000 irasu irasymo i kietiaku faila laikas: 0.0011602 s
+Surusiuota studentu:
+Vargsai (< 5.0): 453 studentai
+Kietiakai (>= 5.0): 547 studentai
+1000 irasu testo laikas: 0.009259 s
+Failo is 10000 irasu nuskaitymo laikas: 0.0283623 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000
+10000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0046844 s
+10000 irasu dalijimo i dvi grupes laikas: 0.0030548 s
+10000 irasu irasymo i vargsiuku faila laikas: 0.0055813 s
+10000 irasu irasymo i kietiaku faila laikas: 0.0104295 s
+Surusiuota studentu:
+Vargsai (< 5.0): 4075 studentai
+Kietiakai (>= 5.0): 5925 studentai
+10000 irasu testo laikas: 0.0521123 s
+Failo is 100000 irasu nuskaitymo laikas: 0.208805 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 100000
+100000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0370121 s
+100000 irasu dalijimo i dvi grupes laikas: 0.0310087 s
+100000 irasu irasymo i vargsiuku faila laikas: 0.049364 s
+100000 irasu irasymo i kietiaku faila laikas: 0.0658111 s
+Surusiuota studentu:
+Vargsai (< 5.0): 41132 studentai
+Kietiakai (>= 5.0): 58868 studentai
+100000 irasu testo laikas: 0.392001 s
+Failo is 1000000 irasu nuskaitymo laikas: 1.72818 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000000
+1000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.439256 s
+1000000 irasu dalijimo i dvi grupes laikas: 0.240699 s
+1000000 irasu irasymo i vargsiuku faila laikas: 0.521794 s
+1000000 irasu irasymo i kietiaku faila laikas: 0.710123 s
+Surusiuota studentu:
+Vargsai (< 5.0): 410963 studentai
+Kietiakai (>= 5.0): 589037 studentai
+1000000 irasu testo laikas: 3.64005 s
+Failo is 10000000 irasu nuskaitymo laikas: 21.563 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000000
+10000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 4.82229 s
+10000000 irasu dalijimo i dvi grupes laikas: 4.1194 s
+10000000 irasu irasymo i vargsiuku faila laikas: 4.72609 s
+10000000 irasu irasymo i kietiaku faila laikas: 6.93334 s
+Surusiuota studentu:
+Vargsai (< 5.0): 4110610 studentai
+Kietiakai (>= 5.0): 5889390 studentai
+10000000 irasu testo laikas: 42.1641 s
+2 iteracija:
+Failo is 1000 irasu nuskaitymo laikas: 0.0029897 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000
+1000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0001747 s
+1000 irasu dalijimo i dvi grupes laikas: 0.0002139 s
+1000 irasu irasymo i vargsiuku faila laikas: 0.0011024 s
+1000 irasu irasymo i kietiaku faila laikas: 0.0013659 s
+Surusiuota studentu:
+Vargsai (< 5.0): 453 studentai
+Kietiakai (>= 5.0): 547 studentai
+1000 irasu testo laikas: 0.0058466 s
+Failo is 10000 irasu nuskaitymo laikas: 0.0248229 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000
+10000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0047197 s
+10000 irasu dalijimo i dvi grupes laikas: 0.0046552 s
+10000 irasu irasymo i vargsiuku faila laikas: 0.0080777 s
+10000 irasu irasymo i kietiaku faila laikas: 0.0089027 s
+Surusiuota studentu:
+Vargsai (< 5.0): 4075 studentai
+Kietiakai (>= 5.0): 5925 studentai
+10000 irasu testo laikas: 0.0511782 s
+Failo is 100000 irasu nuskaitymo laikas: 0.188273 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 100000
+100000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0352935 s
+100000 irasu dalijimo i dvi grupes laikas: 0.0268352 s
+100000 irasu irasymo i vargsiuku faila laikas: 0.0527467 s
+100000 irasu irasymo i kietiaku faila laikas: 0.0652552 s
+Surusiuota studentu:
+Vargsai (< 5.0): 41132 studentai
+Kietiakai (>= 5.0): 58868 studentai
+100000 irasu testo laikas: 0.368403 s
+Failo is 1000000 irasu nuskaitymo laikas: 1.85893 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000000
+1000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.413777 s
+1000000 irasu dalijimo i dvi grupes laikas: 0.252073 s
+1000000 irasu irasymo i vargsiuku faila laikas: 0.450211 s
+1000000 irasu irasymo i kietiaku faila laikas: 0.638191 s
+Surusiuota studentu:
+Vargsai (< 5.0): 410963 studentai
+Kietiakai (>= 5.0): 589037 studentai
+1000000 irasu testo laikas: 3.61318 s
+Failo is 10000000 irasu nuskaitymo laikas: 22.4835 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000000
+10000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 8.78704 s
+10000000 irasu dalijimo i dvi grupes laikas: 4.17066 s
+10000000 irasu irasymo i vargsiuku faila laikas: 4.55285 s
+10000000 irasu irasymo i kietiaku faila laikas: 6.71621 s
+Surusiuota studentu:
+Vargsai (< 5.0): 4110610 studentai
+Kietiakai (>= 5.0): 5889390 studentai
+10000000 irasu testo laikas: 46.7103 s
+3 iteracija:
+Failo is 1000 irasu nuskaitymo laikas: 0.0098763 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000
+1000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0002146 s
+1000 irasu dalijimo i dvi grupes laikas: 0.0002975 s
+1000 irasu irasymo i vargsiuku faila laikas: 0.0010535 s
+1000 irasu irasymo i kietiaku faila laikas: 0.0011303 s
+Surusiuota studentu:
+Vargsai (< 5.0): 453 studentai
+Kietiakai (>= 5.0): 547 studentai
+1000 irasu testo laikas: 0.0125722 s
+Failo is 10000 irasu nuskaitymo laikas: 0.0205468 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000
+10000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0032347 s
+10000 irasu dalijimo i dvi grupes laikas: 0.0025326 s
+10000 irasu irasymo i vargsiuku faila laikas: 0.0062416 s
+10000 irasu irasymo i kietiaku faila laikas: 0.0078626 s
+Surusiuota studentu:
+Vargsai (< 5.0): 4075 studentai
+Kietiakai (>= 5.0): 5925 studentai
+10000 irasu testo laikas: 0.0404183 s
+Failo is 100000 irasu nuskaitymo laikas: 0.195593 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 100000
+100000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0383397 s
+100000 irasu dalijimo i dvi grupes laikas: 0.0255355 s
+100000 irasu irasymo i vargsiuku faila laikas: 0.04809 s
+100000 irasu irasymo i kietiaku faila laikas: 0.0743702 s
+Surusiuota studentu:
+Vargsai (< 5.0): 41132 studentai
+Kietiakai (>= 5.0): 58868 studentai
+100000 irasu testo laikas: 0.381928 s
+Failo is 1000000 irasu nuskaitymo laikas: 1.77105 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000000
+1000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.402557 s
+1000000 irasu dalijimo i dvi grupes laikas: 0.257385 s
+1000000 irasu irasymo i vargsiuku faila laikas: 0.466166 s
+1000000 irasu irasymo i kietiaku faila laikas: 0.680354 s
+Surusiuota studentu:
+Vargsai (< 5.0): 410963 studentai
+Kietiakai (>= 5.0): 589037 studentai
+1000000 irasu testo laikas: 3.57751 s
+Failo is 10000000 irasu nuskaitymo laikas: 17.4804 s
+Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000000
+10000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 4.88302 s
+10000000 irasu dalijimo i dvi grupes laikas: 3.14246 s
+10000000 irasu irasymo i vargsiuku faila laikas: 4.72399 s
+10000000 irasu irasymo i kietiaku faila laikas: 6.56202 s
+Surusiuota studentu:
+Vargsai (< 5.0): 4110610 studentai
+Kietiakai (>= 5.0): 5889390 studentai
+10000000 irasu testo laikas: 36.7919 s
+VIDURKIAI IS 3 ITERACIJU:
+
+Failo dydis: 1000
+Skaitymo vidurkis: 0.00615253 s
+Rusiavimo vidurkis: 0.0002011 s
+Dalijimo vidurkis: 0.000273233 s
+Vargsiuku irasymo vidurkis: 0.00138027 s
+Kietiaku irasymo vidurkis: 0.0012188 s
+
+Failo dydis: 10000
+Skaitymo vidurkis: 0.0245773 s
+Rusiavimo vidurkis: 0.00421293 s
+Dalijimo vidurkis: 0.0034142 s
+Vargsiuku irasymo vidurkis: 0.00663353 s
+Kietiaku irasymo vidurkis: 0.00906493 s
+
+Failo dydis: 100000
+Skaitymo vidurkis: 0.197557 s
+Rusiavimo vidurkis: 0.0368818 s
+Dalijimo vidurkis: 0.0277931 s
+Vargsiuku irasymo vidurkis: 0.0500669 s
+Kietiaku irasymo vidurkis: 0.0684788 s
+
+Failo dydis: 1000000
+Skaitymo vidurkis: 1.78605 s
+Rusiavimo vidurkis: 0.41853 s
+Dalijimo vidurkis: 0.250052 s
+Vargsiuku irasymo vidurkis: 0.47939 s
+Kietiaku irasymo vidurkis: 0.676223 s
+
+Failo dydis: 10000000
+Skaitymo vidurkis: 20.509 s
+Rusiavimo vidurkis: 6.16412 s
+Dalijimo vidurkis: 3.81084 s
+Vargsiuku irasymo vidurkis: 4.66764 s
+Kietiaku irasymo vidurkis: 6.73719 s
+
+C:\Users\Migle\source\repos\myMultiFileApp\x64\Release\myMultiFileApp.exe (process 5280) exited with code 0 (0x0).
+Press any key to close this window . . .

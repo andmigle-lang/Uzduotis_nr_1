@@ -67,26 +67,8 @@ void failu_generavimas(int k) {
     cout << "Irasymas i faila failui " << failo_vardas << "  uztruko: " << diff2.count() << endl;
 }
 
-void studentu_rusiavimas(vector <Studentas>& Grupe, int k, double& diff_rusiavimas1, double& diff_irasu_dalijimo1, double& diff_irasymas_i_vargsiuku_faila1, double& diff_irasymas_i_kietiaku_faila1) {
-    cout << "Pasirinkite, pagal kuri parametra rusiuosite " << endl;
-    cout << "(1 - pagal varda, 2 - pagal pavarde, 3 - pagal galutini pazymi): ";
-    string pasirinkimas_pr;
-    int pasirinkimas;
-    while (true) {
-        cin >> pasirinkimas_pr;
-        if (isNumber(pasirinkimas_pr)) {
-            pasirinkimas = stoi(pasirinkimas_pr);
-            if (pasirinkimas >= 1 && pasirinkimas <= 3) {
-                break;
-            }
-            else {
-                cout << "Ivedete neteisinga duomeni (galima vesti tik skaicius 1, 2 arba 3): ";
-            }
-        }
-        else {
-            cout << "Ivedete neteisinga duomeni (galima vesti tik skaicius 1, 2 arba 3): ";
-        }
-    }
+void studentu_rusiavimas(vector <Studentas>& Grupe, int k, double& diff_rusiavimas1, double& diff_irasu_dalijimo1, double& diff_irasymas_i_vargsiuku_faila1, double& diff_irasymas_i_kietiaku_faila1, int i) {
+    int pasirinkimas = i;
 
     auto start_rusiavimas = high_resolution_clock::now();
     if (pasirinkimas == 1) {

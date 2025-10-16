@@ -19,7 +19,7 @@ using std::chrono::duration;
 int main(){
     string d_pr;
     int d;
-    cout << "Ar norite dirbti su studentai.txt failais (rasyti 1), ar generuoti naujus failus (5 failai su nuo 1000 iki 10000000 studentu) (rasyti 2): ";
+    cout << "Ar norite dirbti su studentai.txt failais (rasyti 1), ar su generuotais failais (5 failai su nuo 1000 iki 10000000 studentu) (rasyti 2): ";
     while (true) {
         cin >> d_pr;
         if (isNumber(d_pr)) {
@@ -122,8 +122,56 @@ int main(){
 
     }
     else {
-        
-        cout << "Pasirinkite, pagal kuri parametra rusiuosite " << endl;
+        vector<int> sizes = { 1000, 10000, 100000, 1000000, 10000000 };
+        cout << "Jei failai jau sukurti, rasykite 1, o jei ne, tai rasykite 2: ";
+        string irasas_pr;
+        int irasas;
+        while (true) {
+            cin >> irasas_pr;
+            if (isNumber(irasas_pr)) {
+                if (stoi(irasas_pr) == 1 || stoi(irasas_pr) == 2) {
+                    irasas = stoi(irasas_pr);
+                    break;
+                }
+                else {
+                    cout << "Ivedete neteisinga duomeni (galima vesti tik 1 arba 2): ";
+                }
+            }
+            else {
+                cout << "Ivedete neteisinga duomeni (galima vesti tik 1 arba 2): ";
+            }
+        }
+        if (irasas == 2) {
+            cout << "Kiek pazymiu sugeneruoti kieviename is siu failu (nuo 1 iki 20)? ";
+            string paz_sk_pr;
+            int paz_sk;
+            while (true) {
+                cin >> paz_sk_pr;
+                if (isNumber(paz_sk_pr)) {
+                    if (stoi(paz_sk_pr) <= 20 && stoi(paz_sk_pr) >= 1) {
+                        paz_sk = stoi(paz_sk_pr);
+                        break;
+                    }
+                    else {
+                        cout << "Ivedete neteisinga duomeni (galima vesti tik sveikus skaicius nuo 1 iki 20): ";
+                    }
+                }
+                else {
+                    cout << "Ivedete neteisinga duomeni (galima vesti tik sveikus skaicius nuo 1 iki 20): ";
+                }
+            }
+            for (int size : sizes) {
+                failu_generavimas(size, paz_sk);
+            }
+        }
+        vector<double> vid_skaitymas(sizes.size(), 0.0);
+        vector<double> vid_rusiavimas(sizes.size(), 0.0);
+        vector<double> vid_dalijimas(sizes.size(), 0.0);
+        vector<double> vid_vargsiukai(sizes.size(), 0.0);
+        vector<double> vid_kietiakai(sizes.size(), 0.0);
+        int a = sizes.size();
+        const int runs = 3;
+        cout << "\nPasirinkite, pagal kuri parametra rusiuosite " << endl;
         cout << "(1 - pagal varda, 2 - pagal pavarde, 3 - pagal galutini pazymi): ";
         string pasirinkimas_pr;
         int pasirinkimas;
@@ -142,20 +190,8 @@ int main(){
                 cout << "Ivedete neteisinga duomeni (galima vesti tik skaicius 1, 2 arba 3): ";
             }
         }
-        vector<int> sizes = { 1000, 10000, 100000, 1000000, 10000000 };
-        for (int size : sizes) {
-            failu_generavimas(size);
-        }
-
-        vector<double> vid_skaitymas(sizes.size(), 0.0);
-        vector<double> vid_rusiavimas(sizes.size(), 0.0);
-        vector<double> vid_dalijimas(sizes.size(), 0.0);
-        vector<double> vid_vargsiukai(sizes.size(), 0.0);
-        vector<double> vid_kietiakai(sizes.size(), 0.0);
-        int a = sizes.size();
-        const int runs = 3;
         for (int j = 0; j < runs; ++j) {
-            cout << j+1 << " iteracija:" << endl;
+            cout <<"\n"<< j + 1 << " iteracija:" << endl;
             
             
             for (int i = 0; i < a; ++i) {
@@ -186,7 +222,7 @@ int main(){
             
         }
 
-        cout << "VIDURKIAI IS " << runs << " ITERACIJU: " << endl;
+        cout << "\nVIDURKIAI IS " << runs << " ITERACIJU: " << endl;
         for (int i = 0; i < a; ++i) {
             cout << "\nFailo dydis: " << sizes[i] << endl;
             cout << "Skaitymo vidurkis: " << (vid_skaitymas[i] / runs) << " s" << endl;

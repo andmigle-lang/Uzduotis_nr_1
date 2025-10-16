@@ -14,33 +14,22 @@ using std::fixed;
 using std::setprecision;
 using std::chrono::high_resolution_clock;
 using std::chrono::duration;
+using std::random_device;
+using std::mt19937;
+using std::uniform_int_distribution;
 
-void failu_generavimas(int k) {
+void failu_generavimas(int k, int pazymiu_sk) {
 
     string failo_vardas = "Generuoti_studentai" + to_string(k) + ".txt";
     string outputas;
     stringstream my_buffer;
     string vardas, pavarde;
-    srand(time(0));
-    cout << "Generuojamas failas " + failo_vardas << endl;
-    cout << "Kiek pazymiu sugeneruoti (nuo 1 iki 20)? ";
-    string paz_sk_pr;
-    int paz_sk;
-    while (true) {
-        cin >> paz_sk_pr;
-        if (isNumber(paz_sk_pr)) {
-            if (stoi(paz_sk_pr) <= 20 && stoi(paz_sk_pr) >= 1) {
-                paz_sk = stoi(paz_sk_pr);
-                break;
-            }
-            else {
-                cout << "Ivedete neteisinga duomeni (galima vesti tik sveikus skaicius nuo 1 iki 20): ";
-            }
-        }
-        else {
-            cout << "Ivedete neteisinga duomeni (galima vesti tik sveikus skaicius nuo 1 iki 20): ";
-        }
-    }
+    //srand(time(0));
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_int_distribution<int> dist(1, 10);
+    cout << "\nGeneruojamas failas " + failo_vardas << endl;
+    int paz_sk = pazymiu_sk;
     auto start = high_resolution_clock::now();
     my_buffer << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde";
     for (int i = 0; i < paz_sk; i++) {
@@ -52,7 +41,7 @@ void failu_generavimas(int k) {
         pavarde = "Pavarde" + to_string(i + 1);
         my_buffer << setw(20) << left << vardas << setw(20) << left << pavarde;
         for (int i = 0; i <= paz_sk; i++) {
-            my_buffer << setw(8) << right << (rand() % 10) + 1;
+            my_buffer << setw(8) << right << dist(mt);
         }
         my_buffer << endl;
     }
@@ -204,7 +193,7 @@ void skaitymas_is_genruoto_failo(vector<Studentas>& Grupe, const string& failo_v
     }
     F.close();
     duration<double> diff_skaitymas = high_resolution_clock::now() - start_skaitymas;
-    cout << "Failo is " << Grupe.size() << " irasu nuskaitymo laikas: " << diff_skaitymas.count() << " s" << endl;
+    cout << "\nFailo is " << Grupe.size() << " irasu nuskaitymo laikas: " << diff_skaitymas.count() << " s" << endl;
     diff_skaitymas1 = diff_skaitymas.count();
     cout << "Duomenys nuskaityti is failo. Rastas studentu skaicius: " << Grupe.size() << endl;
 }

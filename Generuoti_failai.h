@@ -14,5 +14,26 @@
 #include <random>
 
 void failu_generavimas(int k, int pazymiu_sk);
-void studentu_rusiavimas(vector <Studentas>& Grupe, int k, double& diff_rusiavimas1, double& diff_irasu_dalijimo1, double& diff_irasymas_i_vargsiuku_faila1, double& diff_irasymas_i_kietiaku_faila1, int i);
-void skaitymas_is_genruoto_failo(vector<Studentas>& Grupe, const string& failo_vardas, double& diff_skaitymas1);
+template <typename T> void pagalbine_funkcija(vector <T>& Grupe, int pasirinkimas) {
+    if (pasirinkimas == 1) {
+        sort(Grupe.begin(), Grupe.end(), palyginimas_vardas);
+    }
+    else if (pasirinkimas == 2) {
+        sort(Grupe.begin(), Grupe.end(), palyginimas_pavarde);
+    }
+    else if (pasirinkimas == 3) {
+        sort(Grupe.begin(), Grupe.end(), palyginimas_galutinis);
+    }
+}
+
+template <typename T> void pagalbine_funkcija(list <T>& Grupe, int pasirinkimas) {
+    if (pasirinkimas == 1) {
+        Grupe.sort(palyginimas_vardas);
+    }
+    else if (pasirinkimas == 2) {
+        Grupe.sort(palyginimas_pavarde);
+    }
+    else if (pasirinkimas == 3) {
+        Grupe.sort(palyginimas_galutinis);
+    }
+}

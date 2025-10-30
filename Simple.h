@@ -7,7 +7,8 @@
 #include "is_number.h"
 #include "mediana.h"
 #include <cstdlib>
-#include <ctime>
+#include <random>
+
 using std::cout;
 using std::cin;
 using std::endl;

@@ -15,7 +15,7 @@
 
 #include <vector>
 #include <list>
-#include <algorithm>    // for sort
+#include <algorithm>    // sort funkcijai
 #include <string>
 
 using std::cout;

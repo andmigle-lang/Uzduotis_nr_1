@@ -10,6 +10,9 @@ using std::setprecision;
 using std::left;
 using std::right;
 using std::setw;
+using std::random_device;
+using std::mt19937;
+using std::uniform_int_distribution;
 
 Studentas Stud_iv(int k) {
     int laik_paz, sum = 0;
@@ -68,18 +71,22 @@ Studentas Stud_iv_atsitiktinai(int k) {
     cout << "Iveskite studento nr. " << k << " duomenis: " << endl;
     cout << "Vardas: "; cin >> Pirmas.var;
     cout << "Pavarde: "; cin >> Pirmas.pav;
-    srand(time(0));
-    int pazymiu_sk = rand() % 21;
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_int_distribution<int> dist(1, 21);
+    int pazymiu_sk = dist(mt);
     cout << "Atsitiktinai generuojamu pazymiu skaicius (gali buti nuo 0 iki 20 pazymiu): " << pazymiu_sk << endl;
     cout << "Isvedami atsitiktinai generuojami pazymiai: " << endl;
 
+    mt19937 mt1(rd());
+    uniform_int_distribution<int> dist1(1, 10);
     for (int i = 0; i < pazymiu_sk; i++) {
-        laik_paz = (rand() % 10) + 1;
+        laik_paz = dist1(mt1);
         cout << "Generuotas pazymys nr. " << i + 1 << ": " << laik_paz << endl;
         Pirmas.paz.push_back(laik_paz);
         sum += laik_paz;
     }
-    int egzamino_paz = (rand() % 10) + 1;
+    int egzamino_paz = dist1(mt1);
     cout << "Isvedamas sugeneruotas egzamino pazymys: " << egzamino_paz << endl;
     Pirmas.egz = egzamino_paz;
     if (Pirmas.paz.size() == 0) {
@@ -93,4 +100,3 @@ Studentas Stud_iv_atsitiktinai(int k) {
     }
     return Pirmas;
 }
-

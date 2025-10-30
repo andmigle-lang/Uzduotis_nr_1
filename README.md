@@ -60,7 +60,7 @@ Testavimo sistemos parametrai:
 |               |     List      | 0.0029309 s  |  0.0103041 s |  0.100202 s  |  0.781466 s  |   7.66964 s  |
 ------------------------------------------------------------------------------------------------------------
 
-Išvada: 
+Išvada: reikšmingas skirtumas tarp laikų pastebimas tik naudojant sort funkciją - mažiems failams (pvz. 1000 eilučių) greičiau rūšiuojami list'ai, o dideliems failams (pvz. 10000000 eilučių) daug greičiau rūšiuojami vektoriai.
   
 //Bandymas (išvestis konsolėje):
 Ar norite dirbti su studentai.txt failais/rasyti duomenis rankomis/generuoti (rasyti 1), ar su generuotais failais (5 failai su nuo 1000 iki 10000000 studentu) (rasyti 2): 2

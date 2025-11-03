@@ -8,7 +8,6 @@
 #include "mediana.h"
 #include "is_number.h"
 #include <cstdlib>
-#include <ctime>
 #include <chrono>
 #include "palyginimas.h"
 #include <random>
@@ -33,9 +32,6 @@ using std::fixed;
 using std::setprecision;
 using std::chrono::high_resolution_clock;
 using std::chrono::duration;
-using std::random_device;
-using std::mt19937;
-using std::uniform_int_distribution;
 
 void failu_generavimas(int k, int pazymiu_sk);
 
@@ -63,10 +59,26 @@ template <typename T> void pagalbine_funkcija(list <T>& Grupe, int pasirinkimas)
     }
 }
 
+template <typename T> void pagalbine_funkc_2_strategija(vector <T>& Grupe) {
+    sort(Grupe.begin(), Grupe.end(), palyginimas_2_strategija);
+}
+
+template <typename T> void pagalbine_funkc_2_strategija(list <T>& Grupe) {
+    Grupe.sort(palyginimas_2_strategija);
+}
+
+template <typename T> void ar_naudoti_shrink_to_fit(vector <T>& Grupe) {
+    Grupe.shrink_to_fit();
+}
+
+template <typename T> void ar_naudoti_shrink_to_fit(list <T>& Grupe) {
+}
+
 template <typename T> void studentu_rusiavimas(T& Grupe, int k,
 	double& diff_rusiavimas1, double& diff_irasu_dalijimo1,
 	double& diff_irasymas_i_vargsiuku_faila1,
-	double& diff_irasymas_i_kietiaku_faila1, int i) {
+	double& diff_irasymas_i_kietiaku_faila1, int i, int rusiavimo_strategija) {
+
     int pasirinkimas = i;
 
     auto start_rusiavimas = high_resolution_clock::now();
@@ -78,59 +90,141 @@ template <typename T> void studentu_rusiavimas(T& Grupe, int k,
     T vargsiukai;
     T kietiakai;
 
-    auto start_irasu_dalijimo = high_resolution_clock::now();
-    for (const auto& studentas : Grupe) {
-        if (studentas.gal < 5.0) {
-            vargsiukai.push_back(studentas);
+    //Irasu dalijimas 1 strategija: 
+    //rasyti if statement
+    if (rusiavimo_strategija == 1) {
+        vargsiukai.clear();
+        kietiakai.clear();
+        auto start_irasu_dalijimo = high_resolution_clock::now();
+        for (const auto& studentas : Grupe) {
+            if (studentas.gal < 5.0) {
+                vargsiukai.push_back(studentas);
+            }
+            else {
+                kietiakai.push_back(studentas);
+            }
         }
-        else {
-            kietiakai.push_back(studentas);
+        duration<double> diff_irasu_dalijimo = high_resolution_clock::now() - start_irasu_dalijimo;
+        cout << k << " irasu dalijimo i dvi grupes laikas 1 strategija: " << diff_irasu_dalijimo.count() << " s" << endl;
+        diff_irasu_dalijimo1 = diff_irasu_dalijimo.count();
+
+        auto start_irasymas_i_vargsiuku_faila = high_resolution_clock::now();
+        stringstream vargsiukai_buffer, kietiakai_buffer;
+        vargsiukai_buffer << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(18) << left << "Galutinis (Vid.)" << endl;
+        for (int i = 0; i < 58; i++) {
+            vargsiukai_buffer << "-";
         }
-    }
-    duration<double> diff_irasu_dalijimo = high_resolution_clock::now() - start_irasu_dalijimo;
-    cout << k << " irasu dalijimo i dvi grupes laikas: " << diff_irasu_dalijimo.count() << " s" << endl;
-    diff_irasu_dalijimo1 = diff_irasu_dalijimo.count();
+        vargsiukai_buffer << endl;
+        for (const auto& studentas : vargsiukai) {
+            vargsiukai_buffer << setw(20) << left << studentas.var << setw(20) << left << studentas.pav << setw(18) << left << fixed << setprecision(2) << studentas.gal << endl;
+        }
 
-    auto start_irasymas_i_vargsiuku_faila = high_resolution_clock::now();
-    stringstream vargsiukai_buffer, kietiakai_buffer;
-    vargsiukai_buffer << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(18) << left << "Galutinis (Vid.)" << endl;
-    for (int i = 0; i < 58; i++) {
-        vargsiukai_buffer << "-";
-    }
-    vargsiukai_buffer << endl;
-    for (const auto& studentas : vargsiukai) {
-        vargsiukai_buffer << setw(20) << left << studentas.var << setw(20) << left << studentas.pav << setw(18) << left << fixed << setprecision(2) << studentas.gal << endl;
-    }
+        string failo_vardas1 = "vargsiukai" + to_string(k) + ".txt";
+        ofstream vargsiukai_failas(failo_vardas1);
+        vargsiukai_failas << vargsiukai_buffer.str();
+        vargsiukai_failas.close();
+        duration<double> diff_irasymas_i_vargsiuku_faila = high_resolution_clock::now() - start_irasymas_i_vargsiuku_faila;
+        cout << k << " irasu irasymo i vargsiuku faila laikas: " << diff_irasymas_i_vargsiuku_faila.count() << " s" << endl;
+        diff_irasymas_i_vargsiuku_faila1 = diff_irasymas_i_vargsiuku_faila.count();
 
-    string failo_vardas1 = "vargsiukai" + to_string(k) + ".txt";
-    ofstream vargsiukai_failas(failo_vardas1);
-    vargsiukai_failas << vargsiukai_buffer.str();
-    vargsiukai_failas.close();
-    duration<double> diff_irasymas_i_vargsiuku_faila = high_resolution_clock::now() - start_irasymas_i_vargsiuku_faila;
-    cout << k << " irasu irasymo i vargsiuku faila laikas: " << diff_irasymas_i_vargsiuku_faila.count() << " s" << endl;
-    diff_irasymas_i_vargsiuku_faila1 = diff_irasymas_i_vargsiuku_faila.count();
+        auto start_irasymas_i_kietiaku_faila = high_resolution_clock::now();
+        kietiakai_buffer << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(18) << left << "Galutinis (Vid.)" << endl;
+        for (int i = 0; i < 58; i++) {
+            kietiakai_buffer << "-";
+        }
+        kietiakai_buffer << endl;
+        for (const auto& studentas : kietiakai) {
+            kietiakai_buffer << setw(20) << left << studentas.var << setw(20) << left << studentas.pav << setw(18) << left << fixed << setprecision(2) << studentas.gal << endl;
+        }
 
-    auto start_irasymas_i_kietiaku_faila = high_resolution_clock::now();
-    kietiakai_buffer << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(18) << left << "Galutinis (Vid.)" << endl;
-    for (int i = 0; i < 58; i++) {
-        kietiakai_buffer << "-";
+        string failo_vardas2 = "kietiakai" + to_string(k) + ".txt";
+        ofstream kietiakai_failas(failo_vardas2);
+        kietiakai_failas << kietiakai_buffer.str();
+        kietiakai_failas.close();
+        duration<double> diff_irasymas_i_kietiaku_faila = high_resolution_clock::now() - start_irasymas_i_kietiaku_faila;
+        cout << k << " irasu irasymo i kietiaku faila laikas: " << diff_irasymas_i_kietiaku_faila.count() << " s" << endl;
+        diff_irasymas_i_kietiaku_faila1 = diff_irasymas_i_kietiaku_faila.count();
+
+        cout << "Surusiuota studentu:" << endl;
+        cout << "Vargsai (< 5.0): " << vargsiukai.size() << " studentai" << endl;
+        cout << "Kietiakai (>= 5.0): " << kietiakai.size() << " studentai" << endl;
     }
-    kietiakai_buffer << endl;
-    for (const auto& studentas : kietiakai) {
-        kietiakai_buffer << setw(20) << left << studentas.var << setw(20) << left << studentas.pav << setw(18) << left << fixed << setprecision(2) << studentas.gal << endl;
+    //Irasu dalijimo 1 strategijos pabaiga
+
+    //Irasu dalijimas 2 strategija:
+    //rasyti if statement
+    else if (rusiavimo_strategija == 2) {
+        vargsiukai.clear();
+        kietiakai.clear();
+        auto start_irasu_dalijimo = high_resolution_clock::now();
+        pagalbine_funkc_2_strategija(Grupe);
+        while (!Grupe.empty() && Grupe.back().gal < 5.0) {
+            vargsiukai.push_back(Grupe.back());
+            Grupe.pop_back();
+        }
+        duration<double> diff_irasu_dalijimo = high_resolution_clock::now() - start_irasu_dalijimo;
+        cout << k << " irasu dalijimo i dvi grupes laikas 2 strategija: " << diff_irasu_dalijimo.count() << " s" << endl;
+        diff_irasu_dalijimo1 = diff_irasu_dalijimo.count();
+
+        ar_naudoti_shrink_to_fit(Grupe);
+
+        auto start_irasymas_i_vargsiuku_faila = high_resolution_clock::now();
+        stringstream vargsiukai_buffer, kietiakai_buffer;
+        vargsiukai_buffer << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(18) << left << "Galutinis (Vid.)" << endl;
+        for (int i = 0; i < 58; i++) {
+            vargsiukai_buffer << "-";
+        }
+        vargsiukai_buffer << endl;
+        for (const auto& studentas : vargsiukai) {
+            vargsiukai_buffer << setw(20) << left << studentas.var << setw(20) << left << studentas.pav << setw(18) << left << fixed << setprecision(2) << studentas.gal << endl;
+        }
+
+        string failo_vardas1 = "vargsiukai" + to_string(k) + ".txt";
+        ofstream vargsiukai_failas(failo_vardas1);
+        vargsiukai_failas << vargsiukai_buffer.str();
+        vargsiukai_failas.close();
+        duration<double> diff_irasymas_i_vargsiuku_faila = high_resolution_clock::now() - start_irasymas_i_vargsiuku_faila;
+        cout << k << " irasu irasymo i vargsiuku faila laikas: " << diff_irasymas_i_vargsiuku_faila.count() << " s" << endl;
+        diff_irasymas_i_vargsiuku_faila1 = diff_irasymas_i_vargsiuku_faila.count();
+
+        auto start_irasymas_i_kietiaku_faila = high_resolution_clock::now();
+        kietiakai_buffer << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(18) << left << "Galutinis (Vid.)" << endl;
+        for (int i = 0; i < 58; i++) {
+            kietiakai_buffer << "-";
+        }
+        kietiakai_buffer << endl;
+        for (const auto& studentas : Grupe) {
+            kietiakai_buffer << setw(20) << left << studentas.var << setw(20) << left << studentas.pav << setw(18) << left << fixed << setprecision(2) << studentas.gal << endl;
+        }
+
+        string failo_vardas2 = "kietiakai" + to_string(k) + ".txt";
+        ofstream kietiakai_failas(failo_vardas2);
+        kietiakai_failas << kietiakai_buffer.str();
+        kietiakai_failas.close();
+        duration<double> diff_irasymas_i_kietiaku_faila = high_resolution_clock::now() - start_irasymas_i_kietiaku_faila;
+        cout << k << " irasu irasymo i kietiaku faila laikas: " << diff_irasymas_i_kietiaku_faila.count() << " s" << endl;
+        diff_irasymas_i_kietiaku_faila1 = diff_irasymas_i_kietiaku_faila.count();
+
+        cout << "Surusiuota studentu:" << endl;
+        cout << "Vargsai (< 5.0): " << vargsiukai.size() << " studentai" << endl;
+        cout << "Kietiakai (>= 5.0): " << Grupe.size() << " studentai" << endl;
     }
+    //Irasu dalijimo 2 strategijos pabaiga
 
-    string failo_vardas2 = "kietiakai" + to_string(k) + ".txt";
-    ofstream kietiakai_failas(failo_vardas2);
-    kietiakai_failas << kietiakai_buffer.str();
-    kietiakai_failas.close();
-    duration<double> diff_irasymas_i_kietiaku_faila = high_resolution_clock::now() - start_irasymas_i_kietiaku_faila;
-    cout << k << " irasu irasymo i kietiaku faila laikas: " << diff_irasymas_i_kietiaku_faila.count() << " s" << endl;
-    diff_irasymas_i_kietiaku_faila1 = diff_irasymas_i_kietiaku_faila.count();
+    //Irasu dalijimas 3 strategija:
+    //rasyti if statement
+    else if (rusiavimo_strategija == 3) {
+        vargsiukai.clear();
+        kietiakai.clear();
+        auto start_irasu_dalijimo = high_resolution_clock::now();
+        pagalbine_funkc_2_strategija(Grupe);
+        while (!Grupe.empty() && Grupe.back().gal < 5.0) {
+            vargsiukai.push_back(Grupe.back());
+            Grupe.pop_back();
+        }
 
-    cout << "Surusiuota studentu:" << endl;
-    cout << "Vargsai (< 5.0): " << vargsiukai.size() << " studentai" << endl;
-    cout << "Kietiakai (>= 5.0): " << kietiakai.size() << " studentai" << endl;
+    }
+    //Irasu dalijimo 3 strategijos pabaiga
 }
 
 template <typename T> void skaitymas_is_generuoto_failo(T& Grupe, const string& failo_vardas, double& diff_skaitymas1) {

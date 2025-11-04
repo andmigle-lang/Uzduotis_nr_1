@@ -5,491 +5,175 @@ Testavimo sistemos parametrai:
   Storage:	238 GB SSD NVMe PC SN530 NVMe WDC 256GB
   System Type:	64-bit operating system, x64-based processor
 
-1 Lentelė. Vector ir list efektyvumo tyrimas - vidutinis duomenų skaitymo iš failų greitis (vidurkiai iš 3 iteracijų)
+1.1 Lentelė. Vector ir list efektyvumo tyrimas 1 strategija - vidutinis duomenų skaitymo iš failų greitis (vidurkiai iš 3 iteracijų)
 ------------------------------------------------------------------------------------------------------------
 |                               |                                  Failo dydis                             |
 |                               |--------------------------------------------------------------------------|
 |                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
 |-------------------------------|--------------|--------------|--------------|--------------|--------------|
-|    Duomenų    |    Vector     | 0.00706697 s |  0.0349166 s |  0.230066 s  |   1.99499 s  |   19.5969 s  |
+|    Duomenų    |    Vector     | 0.0141288 s  |  0.0162341 s |  0.153137 s  |   1.52654 s  |   15.1105 s  |
 |    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
-|               |     List      | 0.00658363 s |  0.0314788 s |  0.196846 s  |   1.97507 s  |   18.7698 s  |
+|               |     List      | 0.00368717 s |  0.0167878 s |  0.145562 s  |   1.45126 s  |   14.5035 s  |
 ------------------------------------------------------------------------------------------------------------
 
-2 Lentelė. Vector ir list efektyvumo tyrimas - vidutinis duomenų rūšiavimo sort funkcija greitis (vidurkiai iš 3 iteracijų)
+1.2 Lentelė. Vector ir list efektyvumo tyrimas 1 strategija - vidutinis duomenų rūšiavimo sort funkcija greitis (vidurkiai iš 3 iteracijų)
 ------------------------------------------------------------------------------------------------------------
 |                               |                                  Failo dydis                             |
 |                               |--------------------------------------------------------------------------|
 |                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
 |-------------------------------|--------------|--------------|--------------|--------------|--------------|
-|    Duomenų    |    Vector     | 0.000223433 s| 0.00242663 s |  0.0286921 s |  0.169811 s  |    1.6163 s  |
+|    Duomenų    |    Vector     |  0.0001541 s | 0.00113643 s |  0.01339 s   |  0.122704 s  |   1.34204 s  |
 |    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
-|               |     List      | 0.0001681 s  | 0.0018494 s  |  0.0368933 s |  0.809427 s  |   13.6655 s  |
+|               |     List      |9.30667e-05 s |0.000994133 s |  0.0238527 s |  0.562748 s  |   9.55303 s  |
 ------------------------------------------------------------------------------------------------------------
 
-3 Lentelė. Vector ir list efektyvumo tyrimas - vidutinis duomenų dalijimo (rūšiavimo) į dvi kategorijas greitis (vidurkiai iš 3 iteracijų)
+1.3 Lentelė. Vector ir list efektyvumo tyrimas 1 strategija - vidutinis duomenų dalijimo (rūšiavimo) į dvi kategorijas greitis (vidurkiai iš 3 iteracijų)
 ------------------------------------------------------------------------------------------------------------
 |                               |                                  Failo dydis                             |
 |                               |--------------------------------------------------------------------------|
 |                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
 |-------------------------------|--------------|--------------|--------------|--------------|--------------|
-|    Duomenų    |    Vector     | 0.000562267 s| 0.004866 s   |  0.050564 s  |  0.395736 s  |   5.13189 s  |
+|    Duomenų    |    Vector     | 0.000242133 s| 0.00212573 s |  0.0271172 s |  0.325622 s  |   5.33723 s  |
 |    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
-|               |     List      | 0.000684233 s| 0.00390743 s |  0.0463096 s |  0.470163 s  |   5.26054 s  |
+|               |     List      | 0.000288733 s| 0.00242073 s |  0.0378213 s |  0.36945 s   |   4.29899 s  |
 ------------------------------------------------------------------------------------------------------------
 
-4 Lentelė. Vector ir list efektyvumo tyrimas - vidutinis duomenų įrašymo į vargšiukų failą greitis (vidurkiai iš 3 iteracijų)
+1.4 Lentelė. Vector ir list efektyvumo tyrimas 1 strategija - vidutinis duomenų įrašymo į vargšiukų failą greitis (vidurkiai iš 3 iteracijų)
 ------------------------------------------------------------------------------------------------------------
 |                               |                                  Failo dydis                             |
 |                               |--------------------------------------------------------------------------|
 |                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
 |-------------------------------|--------------|--------------|--------------|--------------|--------------|
-|    Duomenų    |    Vector     |  0.0025461 s | 0.00862267 s |  0.0761669 s |   0.4879 s   |   5.12591 s  |
+|    Duomenų    |    Vector     | 0.00103613 s | 0.0044408 s  |  0.0407388 s |  0.381374 s  |   4.01496 s  |
 |    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
-|               |     List      |  0.00281183 s| 0.00700453 s |  0.0635964 s |   0.570951 s |   5.04984 s  |
+|               |     List      | 0.00116147 s | 0.00502517 s |  0.0400806 s |  0.382441 s  |   4.90451 s  |
 ------------------------------------------------------------------------------------------------------------
 
-5 Lentelė. Vector ir list efektyvumo tyrimas - vidutinis duomenų įrašymo į kietiakų failą greitis (vidurkiai iš 3 iteracijų)
+1.5 Lentelė. Vector ir list efektyvumo tyrimas 1 strategija - vidutinis duomenų įrašymo į kietiakų failą greitis (vidurkiai iš 3 iteracijų)
 ------------------------------------------------------------------------------------------------------------
 |                               |                                  Failo dydis                             |
 |                               |--------------------------------------------------------------------------|
 |                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
 |-------------------------------|--------------|--------------|--------------|--------------|--------------|
-|    Duomenų    |    Vector     | 0.00244277 s |  0.0147428 s |  0.0856534 s |  0.749151 s  |   7.61867 s  |
+|    Duomenų    |    Vector     | 0.0010222 s  |  0.0059374 s |  0.0558662 s |  0.539731 s  |   5.74944 s  |
 |    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
-|               |     List      | 0.0029309 s  |  0.0103041 s |  0.100202 s  |  0.781466 s  |   7.66964 s  |
+|               |     List      | 0.0015315 s  |  0.00678277 s|  0.0563646 s |  0.546428 s  |   6.44387 s  |
+------------------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+2.1 Lentelė. Vector ir list efektyvumo tyrimas 2 strategija - vidutinis duomenų skaitymo iš failų greitis (vidurkiai iš 3 iteracijų)
+------------------------------------------------------------------------------------------------------------
+|                               |                                  Failo dydis                             |
+|                               |--------------------------------------------------------------------------|
+|                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
+|-------------------------------|--------------|--------------|--------------|--------------|--------------|
+|    Duomenų    |    Vector     | 0.00719813 s |  0.0167653 s |  0.157966 s  |   1.49235 s  |   15.132 s   |
+|    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
+|               |     List      | 0.0098619 s  |  0.0159484 s |  0.15104 s   |   1.44529 s  |   14.4144 s  |
+------------------------------------------------------------------------------------------------------------
+
+2.2 Lentelė. Vector ir list efektyvumo tyrimas 2 strategija - vidutinis duomenų rūšiavimo sort funkcija greitis (vidurkiai iš 3 iteracijų)
+------------------------------------------------------------------------------------------------------------
+|                               |                                  Failo dydis                             |
+|                               |--------------------------------------------------------------------------|
+|                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
+|-------------------------------|--------------|--------------|--------------|--------------|--------------|
+|    Duomenų    |    Vector     | 0.0001574 s  | 0.00128257 s |  0.0120769 s |  0.120361 s  |   1.29965 s  |
+|    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
+|               |     List      | 9.33e-05 s   | 0.00101007 s |  0.0279002 s |  0.575306 s  |   9.4526 s   |
+------------------------------------------------------------------------------------------------------------
+
+2.3 Lentelė. Vector ir list efektyvumo tyrimas 2 strategija - vidutinis duomenų dalijimo (rūšiavimo) į dvi kategorijas greitis (vidurkiai iš 3 iteracijų)
+------------------------------------------------------------------------------------------------------------
+|                               |                                  Failo dydis                             |
+|                               |--------------------------------------------------------------------------|
+|                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
+|-------------------------------|--------------|--------------|--------------|--------------|--------------|
+|    Duomenų    |    Vector     | 0.000163867 s| 0.0019854 s  |  0.0207518 s |  0.247371 s  |   2.60787 s  |
+|    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
+|               |     List      | 0.000116567 s| 0.00102087 s |  0.0325785 s |  0.64813 s   |   10.1678 s  |
+------------------------------------------------------------------------------------------------------------
+
+2.4 Lentelė. Vector ir list efektyvumo tyrimas 2 strategija - vidutinis duomenų įrašymo į vargšiukų failą greitis (vidurkiai iš 3 iteracijų)
+------------------------------------------------------------------------------------------------------------
+|                               |                                  Failo dydis                             |
+|                               |--------------------------------------------------------------------------|
+|                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
+|-------------------------------|--------------|--------------|--------------|--------------|--------------|
+|    Duomenų    |    Vector     |  0.00112947 s| 0.00431107 s |  0.0368426 s |   0.361621 s |   3.6231 s   |
+|    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
+|               |     List      | 0.000859767 s| 0.00442263 s |  0.0412019 s |   0.421712 s |   3.8458 s   |
+------------------------------------------------------------------------------------------------------------
+
+2.5 Lentelė. Vector ir list efektyvumo tyrimas 2 strategija - vidutinis duomenų įrašymo į kietiakų failą greitis (vidurkiai iš 3 iteracijų)
+------------------------------------------------------------------------------------------------------------
+|                               |                                  Failo dydis                             |
+|                               |--------------------------------------------------------------------------|
+|                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
+|-------------------------------|--------------|--------------|--------------|--------------|--------------|
+|    Duomenų    |    Vector     | 0.0013245 s  | 0.00644817 s |  0.0536017 s |  0.548991 s  |   5.36302 s  |
+|    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
+|               |     List      | 0.00104023 s | 0.00664323 s |  0.0622307 s |  0.59544 s   |   6.21285 s  |
+------------------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+3.1 Lentelė. Vector ir list efektyvumo tyrimas 3 strategija - vidutinis duomenų skaitymo iš failų greitis (vidurkiai iš 3 iteracijų)
+------------------------------------------------------------------------------------------------------------
+|                               |                                  Failo dydis                             |
+|                               |--------------------------------------------------------------------------|
+|                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
+|-------------------------------|--------------|--------------|--------------|--------------|--------------|
+|    Duomenų    |    Vector     | 0.0116663 s  |  0.0174277 s |  0.158074 s  |   1.47318 s  |   14.9124 s  |
+|    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
+|               |     List      | 0.0079263 s  |  0.0154766 s |  0.144133 s  |   1.44106 s  |   14.5063 s  |
+------------------------------------------------------------------------------------------------------------
+
+3.2 Lentelė. Vector ir list efektyvumo tyrimas 3 strategija - vidutinis duomenų rūšiavimo sort funkcija greitis (vidurkiai iš 3 iteracijų)
+------------------------------------------------------------------------------------------------------------
+|                               |                                  Failo dydis                             |
+|                               |--------------------------------------------------------------------------|
+|                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
+|-------------------------------|--------------|--------------|--------------|--------------|--------------|
+|    Duomenų    |    Vector     | 0.000239233 s| 0.00126667 s |  0.0130326 s |  0.119958 s  |   1.32807 s  |
+|    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
+|               |     List      | 8.41333e-05 s| 0.0009664 s  |  0.0253761 s |  0.566677 s  |  9.52688 s   |
+------------------------------------------------------------------------------------------------------------
+
+3.3 Lentelė. Vector ir list efektyvumo tyrimas 3 strategija - vidutinis duomenų dalijimo (rūšiavimo) į dvi kategorijas greitis (vidurkiai iš 3 iteracijų)
+------------------------------------------------------------------------------------------------------------
+|                               |                                  Failo dydis                             |
+|                               |--------------------------------------------------------------------------|
+|                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
+|-------------------------------|--------------|--------------|--------------|--------------|--------------|
+|    Duomenų    |    Vector     | 0.000162367 s| 0.00121483 s |  0.0131092 s |  0.167806 s  |   1.89473 s  |
+|    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
+|               |     List      | 0.000257133 s| 0.00226823 s |  0.0546216 s |  0.612117 s  |   6.63018 s  |
+------------------------------------------------------------------------------------------------------------
+
+3.4 Lentelė. Vector ir list efektyvumo tyrimas 3 strategija - vidutinis duomenų įrašymo į vargšiukų failą greitis (vidurkiai iš 3 iteracijų)
+------------------------------------------------------------------------------------------------------------
+|                               |                                  Failo dydis                             |
+|                               |--------------------------------------------------------------------------|
+|                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
+|-------------------------------|--------------|--------------|--------------|--------------|--------------|
+|    Duomenų    |    Vector     | 0.000970767 s| 0.00454887 s |  0.0436472 s |   0.373716 s |   3.8493 s   |
+|    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
+|               |     List      | 0.00093 s    | 0.00466807 s |  0.0419688 s |   0.381018 s |   3.83985 s  |
+------------------------------------------------------------------------------------------------------------
+
+3.5 Lentelė. Vector ir list efektyvumo tyrimas 3 strategija - vidutinis duomenų įrašymo į kietiakų failą greitis (vidurkiai iš 3 iteracijų)
+------------------------------------------------------------------------------------------------------------
+|                               |                                  Failo dydis                             |
+|                               |--------------------------------------------------------------------------|
+|                               |     1000     |     10000    |    100000    |    1000000   |   10000000   |
+|-------------------------------|--------------|--------------|--------------|--------------|--------------|
+|    Duomenų    |    Vector     | 0.0009471 s  | 0.00681107 s |  0.0525104 s |  0.532063 s  |   5.32132 s  |
+|    tipas      |---------------|--------------|--------------|--------------|--------------|--------------|
+|               |     List      | 0.000868867 s| 0.00654087 s |  0.0608027 s |  0.611387 s  |   6.59475 s  |
 ------------------------------------------------------------------------------------------------------------
 
 Išvada: reikšmingas skirtumas tarp laikų pastebimas tik naudojant sort funkciją - mažiems failams (pvz. 1000 eilučių) greičiau rūšiuojami list'ai, o dideliems failams (pvz. 10000000 eilučių) daug greičiau rūšiuojami vektoriai.
-  
-//Bandymas (išvestis konsolėje):
-Ar norite dirbti su studentai.txt failais/rasyti duomenis rankomis/generuoti (rasyti 1), ar su generuotais failais (5 failai su nuo 1000 iki 10000000 studentu) (rasyti 2): 2
-Jei failai jau sukurti, rasykite 1, o jei ne, tai rasykite 2: 1
 
-Pasirinkite, pagal kuri parametra rusiuosite
-(1 - pagal varda, 2 - pagal pavarde, 3 - pagal galutini pazymi): 3
-
-Testavimas su vektoriais:
-
-1 iteracija:
-
-Failo is 1000 irasu nuskaitymo laikas: 0.0065757 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000
-1000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0002098 s
-1000 irasu dalijimo i dvi grupes laikas: 0.0002836 s
-1000 irasu irasymo i vargsiuku faila laikas: 0.0027422 s
-1000 irasu irasymo i kietiaku faila laikas: 0.0014856 s
-Surusiuota studentu:
-Vargsai (< 5.0): 415 studentai
-Kietiakai (>= 5.0): 585 studentai
-1000 irasu testo laikas: 0.0112969 s
-
-Failo is 10000 irasu nuskaitymo laikas: 0.031842 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000
-10000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0014353 s
-10000 irasu dalijimo i dvi grupes laikas: 0.0027069 s
-10000 irasu irasymo i vargsiuku faila laikas: 0.0073085 s
-10000 irasu irasymo i kietiaku faila laikas: 0.0084108 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4111 studentai
-Kietiakai (>= 5.0): 5889 studentai
-10000 irasu testo laikas: 0.0517035 s
-
-Failo is 100000 irasu nuskaitymo laikas: 0.221974 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 100000
-100000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0214443 s
-100000 irasu dalijimo i dvi grupes laikas: 0.0476972 s
-100000 irasu irasymo i vargsiuku faila laikas: 0.075648 s
-100000 irasu irasymo i kietiaku faila laikas: 0.0880994 s
-Surusiuota studentu:
-Vargsai (< 5.0): 40881 studentai
-Kietiakai (>= 5.0): 59119 studentai
-100000 irasu testo laikas: 0.454863 s
-
-Failo is 1000000 irasu nuskaitymo laikas: 2.01701 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000000
-1000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.155534 s
-1000000 irasu dalijimo i dvi grupes laikas: 0.392052 s
-1000000 irasu irasymo i vargsiuku faila laikas: 0.516771 s
-1000000 irasu irasymo i kietiaku faila laikas: 0.74773 s
-Surusiuota studentu:
-Vargsai (< 5.0): 411101 studentai
-Kietiakai (>= 5.0): 588899 studentai
-1000000 irasu testo laikas: 3.82909 s
-
-Failo is 10000000 irasu nuskaitymo laikas: 19.6958 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000000
-10000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 1.58807 s
-10000000 irasu dalijimo i dvi grupes laikas: 5.03682 s
-10000000 irasu irasymo i vargsiuku faila laikas: 4.86858 s
-10000000 irasu irasymo i kietiaku faila laikas: 7.60622 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4108815 studentai
-Kietiakai (>= 5.0): 5891185 studentai
-10000000 irasu testo laikas: 38.7954 s
-
-2 iteracija:
-
-Failo is 1000 irasu nuskaitymo laikas: 0.0054533 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000
-1000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0002541 s
-1000 irasu dalijimo i dvi grupes laikas: 0.0005705 s
-1000 irasu irasymo i vargsiuku faila laikas: 0.0023734 s
-1000 irasu irasymo i kietiaku faila laikas: 0.0041135 s
-Surusiuota studentu:
-Vargsai (< 5.0): 415 studentai
-Kietiakai (>= 5.0): 585 studentai
-1000 irasu testo laikas: 0.0127648 s
-
-Failo is 10000 irasu nuskaitymo laikas: 0.0476898 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000
-10000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0033544 s
-10000 irasu dalijimo i dvi grupes laikas: 0.0073104 s
-10000 irasu irasymo i vargsiuku faila laikas: 0.0115675 s
-10000 irasu irasymo i kietiaku faila laikas: 0.0201785 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4111 studentai
-Kietiakai (>= 5.0): 5889 studentai
-10000 irasu testo laikas: 0.0901006 s
-
-Failo is 100000 irasu nuskaitymo laikas: 0.266863 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 100000
-100000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0484311 s
-100000 irasu dalijimo i dvi grupes laikas: 0.0654774 s
-100000 irasu irasymo i vargsiuku faila laikas: 0.0692983 s
-100000 irasu irasymo i kietiaku faila laikas: 0.0737623 s
-Surusiuota studentu:
-Vargsai (< 5.0): 40881 studentai
-Kietiakai (>= 5.0): 59119 studentai
-100000 irasu testo laikas: 0.523832 s
-
-Failo is 1000000 irasu nuskaitymo laikas: 2.04068 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000000
-1000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.180111 s
-1000000 irasu dalijimo i dvi grupes laikas: 0.400046 s
-1000000 irasu irasymo i vargsiuku faila laikas: 0.461353 s
-1000000 irasu irasymo i kietiaku faila laikas: 0.736066 s
-Surusiuota studentu:
-Vargsai (< 5.0): 411101 studentai
-Kietiakai (>= 5.0): 588899 studentai
-1000000 irasu testo laikas: 3.81826 s
-
-Failo is 10000000 irasu nuskaitymo laikas: 19.4937 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000000
-10000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 1.6368 s
-10000000 irasu dalijimo i dvi grupes laikas: 5.38956 s
-10000000 irasu irasymo i vargsiuku faila laikas: 5.14903 s
-10000000 irasu irasymo i kietiaku faila laikas: 7.30839 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4108815 studentai
-Kietiakai (>= 5.0): 5891185 studentai
-10000000 irasu testo laikas: 38.9775 s
-
-3 iteracija:
-
-Failo is 1000 irasu nuskaitymo laikas: 0.0091719 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000
-1000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0002064 s
-1000 irasu dalijimo i dvi grupes laikas: 0.0008327 s
-1000 irasu irasymo i vargsiuku faila laikas: 0.0025227 s
-1000 irasu irasymo i kietiaku faila laikas: 0.0017292 s
-Surusiuota studentu:
-Vargsai (< 5.0): 415 studentai
-Kietiakai (>= 5.0): 585 studentai
-1000 irasu testo laikas: 0.0144629 s
-
-Failo is 10000 irasu nuskaitymo laikas: 0.025218 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000
-10000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0024902 s
-10000 irasu dalijimo i dvi grupes laikas: 0.0045807 s
-10000 irasu irasymo i vargsiuku faila laikas: 0.006992 s
-10000 irasu irasymo i kietiaku faila laikas: 0.0156391 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4111 studentai
-Kietiakai (>= 5.0): 5889 studentai
-10000 irasu testo laikas: 0.05492 s
-
-Failo is 100000 irasu nuskaitymo laikas: 0.20136 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 100000
-100000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.016201 s
-100000 irasu dalijimo i dvi grupes laikas: 0.0385175 s
-100000 irasu irasymo i vargsiuku faila laikas: 0.0835544 s
-100000 irasu irasymo i kietiaku faila laikas: 0.0950984 s
-Surusiuota studentu:
-Vargsai (< 5.0): 40881 studentai
-Kietiakai (>= 5.0): 59119 studentai
-100000 irasu testo laikas: 0.434731 s
-
-Failo is 1000000 irasu nuskaitymo laikas: 1.92728 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000000
-1000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.17379 s
-1000000 irasu dalijimo i dvi grupes laikas: 0.395109 s
-1000000 irasu irasymo i vargsiuku faila laikas: 0.485576 s
-1000000 irasu irasymo i kietiaku faila laikas: 0.763656 s
-Surusiuota studentu:
-Vargsai (< 5.0): 411101 studentai
-Kietiakai (>= 5.0): 588899 studentai
-1000000 irasu testo laikas: 3.74541 s
-
-Failo is 10000000 irasu nuskaitymo laikas: 19.6012 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000000
-10000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 1.62402 s
-10000000 irasu dalijimo i dvi grupes laikas: 4.9693 s
-10000000 irasu irasymo i vargsiuku faila laikas: 5.36013 s
-10000000 irasu irasymo i kietiaku faila laikas: 7.9414 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4108815 studentai
-Kietiakai (>= 5.0): 5891185 studentai
-10000000 irasu testo laikas: 39.4961 s
-
-VIDURKIAI IS 3 ITERACIJU:
-
-Failo dydis: 1000
-Skaitymo vidurkis: 0.00706697 s
-Rusiavimo vidurkis: 0.000223433 s
-Dalijimo vidurkis: 0.000562267 s
-Vargsiuku irasymo vidurkis: 0.0025461 s
-Kietiaku irasymo vidurkis: 0.00244277 s
-
-Failo dydis: 10000
-Skaitymo vidurkis: 0.0349166 s
-Rusiavimo vidurkis: 0.00242663 s
-Dalijimo vidurkis: 0.004866 s
-Vargsiuku irasymo vidurkis: 0.00862267 s
-Kietiaku irasymo vidurkis: 0.0147428 s
-
-Failo dydis: 100000
-Skaitymo vidurkis: 0.230066 s
-Rusiavimo vidurkis: 0.0286921 s
-Dalijimo vidurkis: 0.050564 s
-Vargsiuku irasymo vidurkis: 0.0761669 s
-Kietiaku irasymo vidurkis: 0.0856534 s
-
-Failo dydis: 1000000
-Skaitymo vidurkis: 1.99499 s
-Rusiavimo vidurkis: 0.169811 s
-Dalijimo vidurkis: 0.395736 s
-Vargsiuku irasymo vidurkis: 0.4879 s
-Kietiaku irasymo vidurkis: 0.749151 s
-
-Failo dydis: 10000000
-Skaitymo vidurkis: 19.5969 s
-Rusiavimo vidurkis: 1.6163 s
-Dalijimo vidurkis: 5.13189 s
-Vargsiuku irasymo vidurkis: 5.12591 s
-Kietiaku irasymo vidurkis: 7.61867 s
-
-Testavimas su list'ais:
-
-1 iteracija:
-
-Failo is 1000 irasu nuskaitymo laikas: 0.0069963 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000
-1000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0001575 s
-1000 irasu dalijimo i dvi grupes laikas: 0.0007131 s
-1000 irasu irasymo i vargsiuku faila laikas: 0.0022892 s
-1000 irasu irasymo i kietiaku faila laikas: 0.0024992 s
-Surusiuota studentu:
-Vargsai (< 5.0): 415 studentai
-Kietiakai (>= 5.0): 585 studentai
-1000 irasu testo laikas: 0.0126553 s
-
-Failo is 10000 irasu nuskaitymo laikas: 0.0327439 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000
-10000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0024916 s
-10000 irasu dalijimo i dvi grupes laikas: 0.004813 s
-10000 irasu irasymo i vargsiuku faila laikas: 0.0066683 s
-10000 irasu irasymo i kietiaku faila laikas: 0.0079985 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4111 studentai
-Kietiakai (>= 5.0): 5889 studentai
-10000 irasu testo laikas: 0.0547153 s
-
-Failo is 100000 irasu nuskaitymo laikas: 0.204956 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 100000
-100000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0367995 s
-100000 irasu dalijimo i dvi grupes laikas: 0.0498191 s
-100000 irasu irasymo i vargsiuku faila laikas: 0.0541914 s
-100000 irasu irasymo i kietiaku faila laikas: 0.0807393 s
-Surusiuota studentu:
-Vargsai (< 5.0): 40881 studentai
-Kietiakai (>= 5.0): 59119 studentai
-100000 irasu testo laikas: 0.426505 s
-
-Failo is 1000000 irasu nuskaitymo laikas: 1.9106 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000000
-1000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.825012 s
-1000000 irasu dalijimo i dvi grupes laikas: 0.456503 s
-1000000 irasu irasymo i vargsiuku faila laikas: 0.576782 s
-1000000 irasu irasymo i kietiaku faila laikas: 0.823745 s
-Surusiuota studentu:
-Vargsai (< 5.0): 411101 studentai
-Kietiakai (>= 5.0): 588899 studentai
-1000000 irasu testo laikas: 4.59264 s
-
-Failo is 10000000 irasu nuskaitymo laikas: 18.5736 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000000
-10000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 13.917 s
-10000000 irasu dalijimo i dvi grupes laikas: 5.19583 s
-10000000 irasu irasymo i vargsiuku faila laikas: 5.13281 s
-10000000 irasu irasymo i kietiaku faila laikas: 7.80566 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4108815 studentai
-Kietiakai (>= 5.0): 5891185 studentai
-10000000 irasu testo laikas: 50.6249 s
-
-2 iteracija:
-
-Failo is 1000 irasu nuskaitymo laikas: 0.0058613 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000
-1000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0001349 s
-1000 irasu dalijimo i dvi grupes laikas: 0.0007417 s
-1000 irasu irasymo i vargsiuku faila laikas: 0.0024742 s
-1000 irasu irasymo i kietiaku faila laikas: 0.0022456 s
-Surusiuota studentu:
-Vargsai (< 5.0): 415 studentai
-Kietiakai (>= 5.0): 585 studentai
-1000 irasu testo laikas: 0.0114577 s
-
-Failo is 10000 irasu nuskaitymo laikas: 0.0231192 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000
-10000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.001391 s
-10000 irasu dalijimo i dvi grupes laikas: 0.0031088 s
-10000 irasu irasymo i vargsiuku faila laikas: 0.0076988 s
-10000 irasu irasymo i kietiaku faila laikas: 0.0124708 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4111 studentai
-Kietiakai (>= 5.0): 5889 studentai
-10000 irasu testo laikas: 0.0477886 s
-
-Failo is 100000 irasu nuskaitymo laikas: 0.195041 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 100000
-100000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.035106 s
-100000 irasu dalijimo i dvi grupes laikas: 0.04566 s
-100000 irasu irasymo i vargsiuku faila laikas: 0.0806467 s
-100000 irasu irasymo i kietiaku faila laikas: 0.118041 s
-Surusiuota studentu:
-Vargsai (< 5.0): 40881 studentai
-Kietiakai (>= 5.0): 59119 studentai
-100000 irasu testo laikas: 0.474495 s
-
-Failo is 1000000 irasu nuskaitymo laikas: 1.88186 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000000
-1000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.795224 s
-1000000 irasu dalijimo i dvi grupes laikas: 0.476743 s
-1000000 irasu irasymo i vargsiuku faila laikas: 0.600546 s
-1000000 irasu irasymo i kietiaku faila laikas: 0.745513 s
-Surusiuota studentu:
-Vargsai (< 5.0): 411101 studentai
-Kietiakai (>= 5.0): 588899 studentai
-1000000 irasu testo laikas: 4.49989 s
-
-Failo is 10000000 irasu nuskaitymo laikas: 18.561 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000000
-10000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 13.3429 s
-10000000 irasu dalijimo i dvi grupes laikas: 5.24301 s
-10000000 irasu irasymo i vargsiuku faila laikas: 4.9628 s
-10000000 irasu irasymo i kietiaku faila laikas: 7.50954 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4108815 studentai
-Kietiakai (>= 5.0): 5891185 studentai
-10000000 irasu testo laikas: 49.6193 s
-
-3 iteracija:
-
-Failo is 1000 irasu nuskaitymo laikas: 0.0068933 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000
-1000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0002119 s
-1000 irasu dalijimo i dvi grupes laikas: 0.0005979 s
-1000 irasu irasymo i vargsiuku faila laikas: 0.0036721 s
-1000 irasu irasymo i kietiaku faila laikas: 0.0040479 s
-Surusiuota studentu:
-Vargsai (< 5.0): 415 studentai
-Kietiakai (>= 5.0): 585 studentai
-1000 irasu testo laikas: 0.0154231 s
-
-Failo is 10000 irasu nuskaitymo laikas: 0.0385733 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000
-10000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0016656 s
-10000 irasu dalijimo i dvi grupes laikas: 0.0038005 s
-10000 irasu irasymo i vargsiuku faila laikas: 0.0066465 s
-10000 irasu irasymo i kietiaku faila laikas: 0.0104431 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4111 studentai
-Kietiakai (>= 5.0): 5889 studentai
-10000 irasu testo laikas: 0.061129 s
-
-Failo is 100000 irasu nuskaitymo laikas: 0.190542 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 100000
-100000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.0387744 s
-100000 irasu dalijimo i dvi grupes laikas: 0.0434498 s
-100000 irasu irasymo i vargsiuku faila laikas: 0.0559512 s
-100000 irasu irasymo i kietiaku faila laikas: 0.101827 s
-Surusiuota studentu:
-Vargsai (< 5.0): 40881 studentai
-Kietiakai (>= 5.0): 59119 studentai
-100000 irasu testo laikas: 0.430545 s
-
-Failo is 1000000 irasu nuskaitymo laikas: 2.13275 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 1000000
-1000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 0.808046 s
-1000000 irasu dalijimo i dvi grupes laikas: 0.477243 s
-1000000 irasu irasymo i vargsiuku faila laikas: 0.535523 s
-1000000 irasu irasymo i kietiaku faila laikas: 0.775139 s
-Surusiuota studentu:
-Vargsai (< 5.0): 411101 studentai
-Kietiakai (>= 5.0): 588899 studentai
-1000000 irasu testo laikas: 4.7287 s
-
-Failo is 10000000 irasu nuskaitymo laikas: 19.175 s
-Duomenys nuskaityti is failo. Rastas studentu skaicius: 10000000
-10000000 irasu rusiavimo didejimo tvarka laikas, su sort funkcija: 13.7366 s
-10000000 irasu dalijimo i dvi grupes laikas: 5.34279 s
-10000000 irasu irasymo i vargsiuku faila laikas: 5.05391 s
-10000000 irasu irasymo i kietiaku faila laikas: 7.69372 s
-Surusiuota studentu:
-Vargsai (< 5.0): 4108815 studentai
-Kietiakai (>= 5.0): 5891185 studentai
-10000000 irasu testo laikas: 51.0019 s
-
-VIDURKIAI IS 3 ITERACIJU:
-
-Failo dydis: 1000
-Skaitymo vidurkis: 0.00658363 s
-Rusiavimo vidurkis: 0.0001681 s
-Dalijimo vidurkis: 0.000684233 s
-Vargsiuku irasymo vidurkis: 0.00281183 s
-Kietiaku irasymo vidurkis: 0.0029309 s
-
-Failo dydis: 10000
-Skaitymo vidurkis: 0.0314788 s
-Rusiavimo vidurkis: 0.0018494 s
-Dalijimo vidurkis: 0.00390743 s
-Vargsiuku irasymo vidurkis: 0.00700453 s
-Kietiaku irasymo vidurkis: 0.0103041 s
-
-Failo dydis: 100000
-Skaitymo vidurkis: 0.196846 s
-Rusiavimo vidurkis: 0.0368933 s
-Dalijimo vidurkis: 0.0463096 s
-Vargsiuku irasymo vidurkis: 0.0635964 s
-Kietiaku irasymo vidurkis: 0.100202 s
-
-Failo dydis: 1000000
-Skaitymo vidurkis: 1.97507 s
-Rusiavimo vidurkis: 0.809427 s
-Dalijimo vidurkis: 0.470163 s
-Vargsiuku irasymo vidurkis: 0.570951 s
-Kietiaku irasymo vidurkis: 0.781466 s
-
-Failo dydis: 10000000
-Skaitymo vidurkis: 18.7698 s
-Rusiavimo vidurkis: 13.6655 s
-Dalijimo vidurkis: 5.26054 s
-Vargsiuku irasymo vidurkis: 5.04984 s
-Kietiaku irasymo vidurkis: 7.66964 s
-
-(process 8204) exited with code 0 (0x0).
-To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
-Press any key to close this window . . .
 </pre>

@@ -55,3 +55,7 @@ void failu_generavimas(int k, int pazymiu_sk) {
     duration<double> diff2 = high_resolution_clock::now() - start2;
     cout << "Irasymas i faila failui " << failo_vardas << "  uztruko: " << diff2.count() << endl;
 }
+
+bool partition_palyginimas(const Studentas& s) {
+    return s.gal >= 5.0;
+}

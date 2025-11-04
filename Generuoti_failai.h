@@ -34,6 +34,8 @@ using std::chrono::high_resolution_clock;
 using std::chrono::duration;
 
 using std::stable_partition;
+using std::copy;
+using std::distance;
 
 void failu_generavimas(int k, int pazymiu_sk);
 
@@ -94,8 +96,7 @@ template <typename T> void studentu_rusiavimas(T& Grupe, int k,
     T vargsiukai;
     T kietiakai;
 
-    //Irasu dalijimas 1 strategija: 
-    //rasyti if statement
+    //Irasu dalijimas 1 strategija:
     if (rusiavimo_strategija == 1) {
         vargsiukai.clear();
         kietiakai.clear();
@@ -156,7 +157,6 @@ template <typename T> void studentu_rusiavimas(T& Grupe, int k,
     //Irasu dalijimo 1 strategijos pabaiga
 
     //Irasu dalijimas 2 strategija:
-    //rasyti if statement
     else if (rusiavimo_strategija == 2) {
         vargsiukai.clear();
         kietiakai.clear();
@@ -216,16 +216,17 @@ template <typename T> void studentu_rusiavimas(T& Grupe, int k,
     //Irasu dalijimo 2 strategijos pabaiga
 
     //Irasu dalijimas 3 strategija:
-    //rasyti if statement
     else if (rusiavimo_strategija == 3) {
         vargsiukai.clear();
         kietiakai.clear();
         auto start_irasu_dalijimo = high_resolution_clock::now();
 
         auto vidurys = stable_partition(Grupe.begin(), Grupe.end(), partition_palyginimas);
-        for (auto pointeris=vidurys; pointeris != Grupe.end(); pointeris++) {
-            vargsiukai.push_back(*pointeris);
-        }
+        //for (auto pointeris=vidurys; pointeris != Grupe.end(); pointeris++) {
+        //    vargsiukai.push_back(*pointeris);
+        //}
+        vargsiukai.resize(distance(vidurys, Grupe.end()));
+        copy(vidurys, Grupe.end(), vargsiukai.begin());
         Grupe.erase(vidurys, Grupe.end());
         duration<double> diff_irasu_dalijimo = high_resolution_clock::now() - start_irasu_dalijimo;
         cout << k << " irasu dalijimo i dvi grupes laikas 3 strategija: " << diff_irasu_dalijimo.count() << " s" << endl;

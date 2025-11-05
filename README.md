@@ -1,6 +1,9 @@
 <pre>
 Releas'ai:
-  v0.1 pre-release: 
+  v0.1 pre-release: studentų pažymių vidurkių/medianų skaičiavimai iš ranka įvestų/atsitiktinai sugeneruotų duomenų/nuskaitomi iš failo;
+  v0.2 pre-release: studentų pažymių vidurkių/medianų skaičiavimai iš sugeneruotų didelių (nuo 1000 iki 10000000 eilučių) dydžio failų, refaktoringas, studentų padalijimas į vargšiukus ir kietiakus;
+  v0.3 pre-release: testavimas, ar vektoriai, ar list greičiau veikia atliekant aukščiau parašytas užduotis;
+  v1.0 trijų strategijų tikrinimas duomenų struktūros skaidymui.
 
 Naudojimo instrukcija:
   1) Atsisiųsti iš GitHub package v1.0.

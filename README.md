@@ -7,9 +7,10 @@ Releas'ai:
 
 Naudojimo instrukcija:
   1) Atsisiųsti iš GitHub package v1.0.
-  2) Atsisiųsti CMake versiją 4.2.0.
-  3) Paleisti failą "run.bat" iš atsisiųsto GitHub package.
-  4) Jei pasirinksite programą testuoti su kursiokai.txt failu, reikia rašyti jo pavadinimą be kabučių, kad programa jį atidarytų.
+  2) Un-zip'initi failus (Extract All...).
+  3) Atsisiųsti CMake versiją 4.2.0.
+  4) Paleisti failą "run.bat" iš atsisiųsto GitHub package.
+  5) Jei pasirinksite programą testuoti su kursiokai.txt failu, reikia rašyti jo pavadinimą be kabučių, kad programa jį atidarytų.
   
 Efektyvumo tyrimas:
   Atlikti 6 tyrimo paleidimai (kiekvienai iš trijų strategijų ir kievienai iš dviejų struktūrų), lentelėse pateikiami įvairių programos etapų veikimo greičių vidurkiai (iš    3 iteracijų). Paryškintos yra lentelės, kuriose tikrintas kiekvienos studentų duomenų struktūros dalinimo į dvi kategorijas strategijos greitis (neparyškintos lentelės      parodytos tam, kad būtų patikrinta, ar programa veikia vienodai tuose etapuose skirtingais atvejais).

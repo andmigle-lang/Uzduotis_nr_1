@@ -1,12 +1,21 @@
 <pre>
+Releas'ai:
+  v0.1 pre-release: 
+
+Naudojimo instrukcija:
+  1) Atsisiųsti iš GitHub package v1.0.
+  2) Atsisiųsti CMake versiją 4.2.0.
+  3) Paleisti failą "run.bat" iš atsisiųsto GitHub package.
+  4) Jei pasirinksite programą testuoti su kursiokai.txt failu, reikia rašyti jo pavadinimą be kabučių, kad programa jį atidarytų.
+  
+Efektyvumo tyrimas:
+  Atlikti 6 tyrimo paleidimai (kiekvienai iš trijų strategijų ir kievienai iš dviejų struktūrų), lentelėse pateikiami įvairių programos etapų veikimo greičių vidurkiai (iš    3 iteracijų). Paryškintos yra lentelės, kuriose tikrintas kiekvienos studentų duomenų struktūros dalinimo į dvi kategorijas strategijos greitis (neparyškintos lentelės      parodytos tam, kad būtų patikrinta, ar programa veikia vienodai tuose etapuose skirtingais atvejais).
+
 Testavimo sistemos parametrai: 
   Processor:	11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz 2.42 GHz
   Installed RAM:	8.00 GB (7.73 GB usable)
   Storage:	238 GB SSD NVMe PC SN530 NVMe WDC 256GB
   System Type:	64-bit operating system, x64-based processor
-
-Efektyvumo tyrimas:
-  Atlikti 6 tyrimo paleidimai (kiekvienai iš trijų strategijų ir kievienai iš dviejų struktūrų), lentelėse pateikiami įvairių programos etapų veikimo greičių vidurkiai (iš    3 iteracijų). Paryškintos yra lentelės, kuriose tikrintas kiekvienos studentų rūšiavimo į dvi kategorijas strategijos greitis (neparyškintos lentelės parodytos tam, kad     būtų patikrinta, ar programa veikia vienodai tuose etapuose skirtingais atvejais).
   
 1.1 Lentelė. Vector ir list efektyvumo tyrimas 1 strategija - vidutinis duomenų skaitymo iš failų greitis (vidurkiai iš 3 iteracijų)
 ------------------------------------------------------------------------------------------------------------
@@ -180,5 +189,5 @@ Efektyvumo tyrimas:
 
 Išvados: 
   1) Reikšmingas skirtumas tarp programos etapo veikimo laikų (lyginant vektorių ir list efektyvumą) pastebimas tik rūšiavimo etape naudojant sort funkciją - mažiems failams (pvz. 1000 eilučių) greičiau rūšiuojami list'ai, o dideliems failams (pvz. 10000000 eilučių) daug greičiau rūšiuojami vektoriai.
-  2) 1 strategijos, kai vektorius ar list'as dalijamas į du naujus vektorius/list'us "vargsiukai" ir "kietiakai", veikimo laikas abiems konteineriams yra panašus, 2 strategijos (
+  2) 1 strategijos, kai vektorius ar list'as dalijamas į du naujus vektorius/list'us "vargsiukai" ir "kietiakai", veikimo laikas abiems konteineriams yra panašus, 2 strategijos (kai duomenys perkeliami tik į vieną naują vargšiukų vektorių/list'ą, o kiti paliekami) veikimo laikas truputį ilgesnis list'ams, 3 strategijos, (naudojant stable_partition ir copy) veikimas vektoriams daug greitesnis, nei list'ams.
 </pre>

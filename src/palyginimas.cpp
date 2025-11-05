@@ -11,3 +11,7 @@ bool palyginimas_pavarde(const Studentas& pirm, const Studentas& antr) {
 bool palyginimas_galutinis(const Studentas& pirm, const Studentas& antr) {
     return pirm.gal < antr.gal;
 }
+
+bool palyginimas_2_strategija(const Studentas& pirm, const Studentas& antr) {
+    return pirm.gal > antr.gal;
+}

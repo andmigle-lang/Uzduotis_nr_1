@@ -148,6 +148,12 @@ int main(){
             }
         }
         if (pasirink == 1) {
+            cout<<"Studentu vektoriaus adresas atmintyje: "<< &Grupe_vector << '\n';
+        }
+        else {
+            cout << "Studentu list'o adresas atmintyje: " << &Grupe_list << '\n';
+        }
+        if (pasirink == 1) {
             sort(Grupe_vector.begin(), Grupe_vector.end(), palyginimas_vardas);
         }
         else {
@@ -244,96 +250,131 @@ int main(){
             }
         }
 
+        cout << "Ar testuoti su vektoriais (rasyti 1), ar su list'ais (rasyti 2): ";
+        string vector_ar_list_pr;
+        int vector_ar_list;
+        while (true) {
+            cin >> vector_ar_list_pr;
+            if (isNumber(vector_ar_list_pr)) {
+                if (stoi(vector_ar_list_pr) == 1 || stoi(vector_ar_list_pr) == 2) {
+                    vector_ar_list = stoi(vector_ar_list_pr);
+                    break;
+                }
+                else {
+                    cout << "Ivedete neteisinga duomeni (galima vesti tik 1 arba 2): ";
+                }
+            }
+            else {
+                cout << "Ivedete neteisinga duomeni (galima vesti tik 1 arba 2): ";
+            }
+        }
+
+        cout << "Kuria strategija tikrinti (rasyti 1, 2 arba 3): ";
+        string strategija_pr;
+        int strategija;
+        while (true) {
+            cin >> strategija_pr;
+            if (isNumber(strategija_pr)) {
+                strategija = stoi(strategija_pr);
+                if (strategija >= 1 && strategija <= 3) {
+                    break;
+                }
+                else {
+                    cout << "Ivedete neteisinga duomeni (galima vesti tik skaicius 1, 2 arba 3): ";
+                }
+            }
+            else {
+                cout << "Ivedete neteisinga duomeni (galima vesti tik skaicius 1, 2 arba 3): ";
+            }
+        }
+
         //Testavimas su vector tipu
-        cout << "\nTestavimas su vektoriais: " << endl;
-        for (int j = 0; j < runs; j++) {
-            cout <<"\n"<< j + 1 << " iteracija:" << endl;
-            
-            for (int i = 0; i < a; i++) {
-                int size = sizes[i];
-                string input_file = "Generuoti_studentai" + to_string(size) + ".txt";
-                vector<Studentas> Grupe1;
+        if (vector_ar_list == 1) {
+            cout << "\nTestavimas su vektoriais: " << endl;
+            for (int j = 0; j < runs; j++) {
+                cout << "\n" << j + 1 << " iteracija:" << endl;
 
-                double diff_skaitymas1 = 0.0;
-                double diff_rusiavimas1 = 0.0;
-                double diff_irasu_dalijimo1 = 0.0;
-                double diff_irasymas_i_vargsiuku_faila1 = 0.0;
-                double diff_irasymas_i_kietiaku_faila1 = 0.0;
+                for (int i = 0; i < a; i++) {
+                    int size = sizes[i];
+                    string input_file = "Generuoti_studentai" + to_string(size) + ".txt";
+                    vector<Studentas> Grupe1;
 
-                skaitymas_is_generuoto_failo(Grupe1, input_file, diff_skaitymas1);
-                studentu_rusiavimas(Grupe1, size,
-                    diff_rusiavimas1,
-                    diff_irasu_dalijimo1,
-                    diff_irasymas_i_vargsiuku_faila1,
-                    diff_irasymas_i_kietiaku_faila1, pasirinkimas);
+                    double diff_skaitymas1 = 0.0;
+                    double diff_rusiavimas1 = 0.0;
+                    double diff_irasu_dalijimo1 = 0.0;
+                    double diff_irasymas_i_vargsiuku_faila1 = 0.0;
+                    double diff_irasymas_i_kietiaku_faila1 = 0.0;
 
-                vid_skaitymas[i] += diff_skaitymas1;
-                vid_rusiavimas[i] += diff_rusiavimas1;
-                vid_dalijimas[i] += diff_irasu_dalijimo1;
-                vid_vargsiukai[i] += diff_irasymas_i_vargsiuku_faila1;
-                vid_kietiakai[i] += diff_irasymas_i_kietiaku_faila1;
-                cout << size<< " irasu testo laikas: " << diff_skaitymas1+ diff_rusiavimas1 + diff_irasu_dalijimo1+ diff_irasymas_i_vargsiuku_faila1+ diff_irasymas_i_kietiaku_faila1 << " s" << endl;
+                    skaitymas_is_generuoto_failo(Grupe1, input_file, diff_skaitymas1);
+                    studentu_rusiavimas(Grupe1, size,
+                        diff_rusiavimas1,
+                        diff_irasu_dalijimo1,
+                        diff_irasymas_i_vargsiuku_faila1,
+                        diff_irasymas_i_kietiaku_faila1, pasirinkimas, strategija);
+
+                    vid_skaitymas[i] += diff_skaitymas1;
+                    vid_rusiavimas[i] += diff_rusiavimas1;
+                    vid_dalijimas[i] += diff_irasu_dalijimo1;
+                    vid_vargsiukai[i] += diff_irasymas_i_vargsiuku_faila1;
+                    vid_kietiakai[i] += diff_irasymas_i_kietiaku_faila1;
+                    cout << size << " irasu testo laikas: " << diff_skaitymas1 + diff_rusiavimas1 + diff_irasu_dalijimo1 + diff_irasymas_i_vargsiuku_faila1 + diff_irasymas_i_kietiaku_faila1 << " s" << endl;
+                }
+
             }
-            
-        }
 
-        cout << "\nVIDURKIAI IS " << runs << " ITERACIJU: " << endl;
-        for (int i = 0; i < a; ++i) {
-            cout << "\nFailo dydis: " << sizes[i] << endl;
-            cout << "Skaitymo vidurkis: " << (vid_skaitymas[i] / runs) << " s" << endl;
-            cout << "Rusiavimo vidurkis: " << (vid_rusiavimas[i] / runs) << " s" << endl;
-            cout << "Dalijimo vidurkis: " << (vid_dalijimas[i] / runs) << " s" << endl;
-            cout << "Vargsiuku irasymo vidurkis: " << (vid_vargsiukai[i] / runs) << " s" << endl;
-            cout << "Kietiaku irasymo vidurkis: " << (vid_kietiakai[i] / runs) << " s" << endl;
-        }
-        for (int k = 0; k < sizes.size(); k++) {
-            vid_skaitymas[k] = 0.0;
-            vid_rusiavimas[k] = 0.0;
-            vid_dalijimas[k] = 0.0;
-            vid_vargsiukai[k] = 0.0;
-            vid_kietiakai[k] = 0.0;
-        }
- 
-        //Testavimas su sarasais (list)
-        cout << "\nTestavimas su list'ais: " << endl;
-        for (int j = 0; j < runs; ++j) {
-            cout << "\n" << j + 1 << " iteracija:" << endl;
-
+            cout << "\nVIDURKIAI IS " << runs << " ITERACIJU: " << endl;
             for (int i = 0; i < a; ++i) {
-                int size = sizes[i];
-                string input_file = "Generuoti_studentai" + to_string(size) + ".txt";
-                list<Studentas> Grupe1;
-
-                double diff_skaitymas1 = 0.0;
-                double diff_rusiavimas1 = 0.0;
-                double diff_irasu_dalijimo1 = 0.0;
-                double diff_irasymas_i_vargsiuku_faila1 = 0.0;
-                double diff_irasymas_i_kietiaku_faila1 = 0.0;
-
-                skaitymas_is_generuoto_failo(Grupe1, input_file, diff_skaitymas1);
-                studentu_rusiavimas(Grupe1, size,
-                    diff_rusiavimas1,
-                    diff_irasu_dalijimo1,
-                    diff_irasymas_i_vargsiuku_faila1,
-                    diff_irasymas_i_kietiaku_faila1, pasirinkimas);
-
-                vid_skaitymas[i] += diff_skaitymas1;
-                vid_rusiavimas[i] += diff_rusiavimas1;
-                vid_dalijimas[i] += diff_irasu_dalijimo1;
-                vid_vargsiukai[i] += diff_irasymas_i_vargsiuku_faila1;
-                vid_kietiakai[i] += diff_irasymas_i_kietiaku_faila1;
-                cout << size << " irasu testo laikas: " << diff_skaitymas1 + diff_rusiavimas1 + diff_irasu_dalijimo1 + diff_irasymas_i_vargsiuku_faila1 + diff_irasymas_i_kietiaku_faila1 << " s" << endl;
+                cout << "\nFailo dydis: " << sizes[i] << endl;
+                cout << "Skaitymo vidurkis: " << (vid_skaitymas[i] / runs) << " s" << endl;
+                cout << "Rusiavimo vidurkis: " << (vid_rusiavimas[i] / runs) << " s" << endl;
+                cout << "Dalijimo vidurkis: " << (vid_dalijimas[i] / runs) << " s" << endl;
+                cout << "Vargsiuku irasymo vidurkis: " << (vid_vargsiukai[i] / runs) << " s" << endl;
+                cout << "Kietiaku irasymo vidurkis: " << (vid_kietiakai[i] / runs) << " s" << endl;
             }
         }
 
-        cout << "\nVIDURKIAI IS " << runs << " ITERACIJU: " << endl;
-        for (int i = 0; i < a; ++i) {
-            cout << "\nFailo dydis: " << sizes[i] << endl;
-            cout << "Skaitymo vidurkis: " << (vid_skaitymas[i] / runs) << " s" << endl;
-            cout << "Rusiavimo vidurkis: " << (vid_rusiavimas[i] / runs) << " s" << endl;
-            cout << "Dalijimo vidurkis: " << (vid_dalijimas[i] / runs) << " s" << endl;
-            cout << "Vargsiuku irasymo vidurkis: " << (vid_vargsiukai[i] / runs) << " s" << endl;
-            cout << "Kietiaku irasymo vidurkis: " << (vid_kietiakai[i] / runs) << " s" << endl;
+        //Testavimas su sarasais (list)
+        else if (vector_ar_list == 2) {
+            cout << "\nTestavimas su list'ais: " << endl;
+            for (int j = 0; j < runs; ++j) {
+                cout << "\n" << j + 1 << " iteracija:" << endl;
+
+                for (int i = 0; i < a; ++i) {
+                    int size = sizes[i];
+                    string input_file = "Generuoti_studentai" + to_string(size) + ".txt";
+                    list<Studentas> Grupe1;
+
+                    double diff_skaitymas1 = 0.0;
+                    double diff_rusiavimas1 = 0.0;
+                    double diff_irasu_dalijimo1 = 0.0;
+                    double diff_irasymas_i_vargsiuku_faila1 = 0.0;
+                    double diff_irasymas_i_kietiaku_faila1 = 0.0;
+
+                    skaitymas_is_generuoto_failo(Grupe1, input_file, diff_skaitymas1);
+                    studentu_rusiavimas(Grupe1, size,
+                        diff_rusiavimas1,
+                        diff_irasu_dalijimo1,
+                        diff_irasymas_i_vargsiuku_faila1,
+                        diff_irasymas_i_kietiaku_faila1, pasirinkimas, 1);
+
+                    vid_skaitymas[i] += diff_skaitymas1;
+                    vid_rusiavimas[i] += diff_rusiavimas1;
+                    vid_dalijimas[i] += diff_irasu_dalijimo1;
+                    vid_vargsiukai[i] += diff_irasymas_i_vargsiuku_faila1;
+                    vid_kietiakai[i] += diff_irasymas_i_kietiaku_faila1;
+                    cout << size << " irasu testo laikas: " << diff_skaitymas1 + diff_rusiavimas1 + diff_irasu_dalijimo1 + diff_irasymas_i_vargsiuku_faila1 + diff_irasymas_i_kietiaku_faila1 << " s" << endl;
+                }
+            }
+
+            cout << "\nVIDURKIAI IS " << runs << " ITERACIJU: " << endl;
+            for (int i = 0; i < a; ++i) {
+                cout << "\nFailo dydis: " << sizes[i] << endl;
+                cout << "Skaitymo vidurkis: " << (vid_skaitymas[i] / runs) << " s" << endl;
+                cout << "Rusiavimo vidurkis: " << (vid_rusiavimas[i] / runs) << " s" << endl;
+                cout << "Dalijimo vidurkis: " << (vid_dalijimas[i] / runs) << " s" << endl;
+                cout << "Vargsiuku irasymo vidurkis: " << (vid_vargsiukai[i] / runs) << " s" << endl;
+                cout << "Kietiaku irasymo vidurkis: " << (vid_kietiakai[i] / runs) << " s" << endl;
+            }
         }
     }
     return 0;

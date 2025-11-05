@@ -5,6 +5,9 @@ Testavimo sistemos parametrai:
   Storage:	238 GB SSD NVMe PC SN530 NVMe WDC 256GB
   System Type:	64-bit operating system, x64-based processor
 
+Efektyvumo tyrimas:
+  Atlikti 6 tyrimo paleidimai (kiekvienai iš trijų strategijų ir kievienai iš dviejų struktūrų), lentelėse pateikiami įvairių programos etapų veikimo greičių vidurkiai (iš    3 iteracijų). Paryškintos yra lentelės, kuriose tikrintas kiekvienos studentų rūšiavimo į dvi kategorijas strategijos greitis (neparyškintos lentelės parodytos tam, kad     būtų patikrinta, ar programa veikia vienodai tuose etapuose skirtingais atvejais).
+  
 1.1 Lentelė. Vector ir list efektyvumo tyrimas 1 strategija - vidutinis duomenų skaitymo iš failų greitis (vidurkiai iš 3 iteracijų)
 ------------------------------------------------------------------------------------------------------------
 |                               |                                  Failo dydis                             |
@@ -175,6 +178,7 @@ Testavimo sistemos parametrai:
 |               |     List      | 0.000868867 s| 0.00654087 s |  0.0608027 s |  0.611387 s  |   6.59475 s  |
 ------------------------------------------------------------------------------------------------------------
 
-Išvada: reikšmingas skirtumas tarp laikų pastebimas tik naudojant sort funkciją - mažiems failams (pvz. 1000 eilučių) greičiau rūšiuojami list'ai, o dideliems failams (pvz. 10000000 eilučių) daug greičiau rūšiuojami vektoriai.
-
+Išvados: 
+  1) Reikšmingas skirtumas tarp programos etapo veikimo laikų (lyginant vektorių ir list efektyvumą) pastebimas tik rūšiavimo etape naudojant sort funkciją - mažiems failams (pvz. 1000 eilučių) greičiau rūšiuojami list'ai, o dideliems failams (pvz. 10000000 eilučių) daug greičiau rūšiuojami vektoriai.
+  2) 
 </pre>

@@ -355,7 +355,7 @@ int main(){
                         diff_rusiavimas1,
                         diff_irasu_dalijimo1,
                         diff_irasymas_i_vargsiuku_faila1,
-                        diff_irasymas_i_kietiaku_faila1, pasirinkimas, 1);
+                        diff_irasymas_i_kietiaku_faila1, pasirinkimas, strategija);
 
                     vid_skaitymas[i] += diff_skaitymas1;
                     vid_rusiavimas[i] += diff_rusiavimas1;
